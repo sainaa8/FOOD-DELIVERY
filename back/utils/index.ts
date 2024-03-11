@@ -15,3 +15,16 @@ export const tokenizer = async (userId: string) => {
   const token = await jwt.sign({ userId }, "secret", { expiresIn: "1d" });
   return token;
 };
+
+import nodemailer, { Transport, TransportOptions } from "nodemailer";
+
+export const transport = nodemailer.createTransport({
+  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: "gnasainaa4@gmail.com",
+    pass: "maojfktndbavihkv",
+  },
+});

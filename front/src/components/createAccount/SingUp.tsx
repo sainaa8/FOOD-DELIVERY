@@ -9,6 +9,7 @@ import { InputField } from "./Input";
 import { InputPassword } from "./InputPassword";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 type fieldsType = {};
 
@@ -34,6 +35,8 @@ type stateType = {
   password2: string;
 };
 export const SignUp = () => {
+  const { push } = useRouter();
+
   const [userdata, setUserdata] = useState<stateType>({
     name: "",
     email: "",
@@ -41,6 +44,7 @@ export const SignUp = () => {
     password: "",
     password2: "",
   });
+
   const [error, setError] = useState<string>();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,12 +59,14 @@ export const SignUp = () => {
     try {
       if (userdata.password !== userdata.password2) {
         setError("Passwords do not match");
+        throw new Error("Passwords do not match");
       }
       const { data } = await axios.post(
         "http://localhost:8001/signup",
         userdata
       );
       console.log(data);
+      push("/login");
     } catch (err: any) {
       console.log(err);
       setError(err.response.data);

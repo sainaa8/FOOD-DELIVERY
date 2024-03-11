@@ -21,3 +21,23 @@ export const login = async (req: Request, res: Response) => {
     res.send(err.message);
   }
 };
+
+import { upQuery } from "../../queries/user/upQuery";
+export const update = async (req: Request, res: Response) => {
+  try {
+    const temp = await upQuery(req, res);
+    res.send({ message: "code sent", temp });
+  } catch (err: any) {
+    res.send(err.message);
+  }
+};
+
+import { numberUpdate } from "../../queries/user/numberUpdate";
+export const numberController = async (req: Request, res: Response) => {
+  try {
+    const tempNu = await numberUpdate(req, res);
+    res.send(tempNu);
+  } catch (err: any) {
+    res.send(err.message);
+  }
+};

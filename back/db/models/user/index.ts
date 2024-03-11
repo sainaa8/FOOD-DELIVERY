@@ -7,6 +7,7 @@ export type UsermodelType = {
   phone: string;
   password: string;
   isUser?: boolean;
+  number?: number;
 };
 
 const UserSchema = new Schema<UsermodelType>({
@@ -30,6 +31,12 @@ const UserSchema = new Schema<UsermodelType>({
     type: Boolean,
     default: false,
     required: false,
+  },
+
+  number: {
+    type: Number,
+    default: 0,
+    required: true,
   },
 });
 
