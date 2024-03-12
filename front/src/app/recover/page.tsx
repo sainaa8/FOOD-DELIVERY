@@ -8,7 +8,7 @@ function RecoverPassPage() {
       alignItems="center"
       sx={{ height: "960px", width: "100vw" }}
     >
-      <RecoverPass />;
+      <RecoverPass />
     </Stack>
   );
 }

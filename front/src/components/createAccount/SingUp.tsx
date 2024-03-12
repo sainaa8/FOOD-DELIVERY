@@ -36,7 +36,6 @@ type stateType = {
 };
 export const SignUp = () => {
   const { push } = useRouter();
-
   const [userdata, setUserdata] = useState<stateType>({
     name: "",
     email: "",
@@ -44,8 +43,9 @@ export const SignUp = () => {
     password: "",
     password2: "",
   });
-
   const [error, setError] = useState<string>();
+  const [disable, setDisable] = useState(true);
+  console.log(disable);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -142,13 +142,14 @@ export const SignUp = () => {
           </Stack>
           <Stack sx={{ marginTop: "80px" }}>
             <Box sx={{ fontFamily: "sans-serif" }}>
-              <Checkbox />
+              <Checkbox onClick={() => setDisable(!disable)} />
               Үйлчилгээний нөхцөл зөвшөөрөх
             </Box>
             <Button
               onClick={handleClick}
               variant="contained"
               sx={{ height: "48px", backgroundColor: "#18BA51" }}
+              disabled={disable ? true : false}
             >
               Бүртгүүлэх
             </Button>

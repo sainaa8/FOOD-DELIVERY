@@ -1,11 +1,17 @@
 import React from "react";
-import { PasswordInput } from "./PasswordInput";
+import { RePass } from "./RePass";
 import { Stack } from "@mui/material";
-export const NewPassword = () => {
+
+type PassType = {
+  onchange: (even: React.ChangeEvent<HTMLInputElement>) => void;
+};
+export const NewPassword = (props: PassType) => {
+  const { onchange } = props;
+
   return (
     <Stack>
-      <PasswordInput text="Нууц үг " name="password" />
-      <PasswordInput text="Нууц үг давтах " name="repassword" />
+      <RePass text="Нууц үг " name="password" onchange={onchange} />
+      <RePass text="Нууц үг давтах " name="repassword" onchange={onchange} />
     </Stack>
   );
 };

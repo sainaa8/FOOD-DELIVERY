@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { InputBase, Paper, Stack, Box } from "@mui/material";
 
 type EmailProps = {
-  setEmail: Dispatch<SetStateAction<{}>>;
+  setEmail: Dispatch<SetStateAction<string>>;
 };
 export const Email = (props: EmailProps) => {
   const { setEmail } = props;

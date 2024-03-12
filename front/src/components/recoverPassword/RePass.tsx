@@ -13,17 +13,17 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 type InputPasswordProps = {
   text: string;
   name: string;
-  setCode: React.Dispatch<React.SetStateAction<string>>;
+  onchange: (even: React.ChangeEvent<HTMLInputElement>) => void;
 };
-export const PasswordInput = (props: InputPasswordProps) => {
-  const { text, name, setCode } = props;
+export const RePass = (props: InputPasswordProps) => {
+  const { text, name, onchange } = props;
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   return (
     <Stack sx={{ mt: "20px" }}>
-      <Box sx={{ fontFamily: "sans-serif", mb: "10px" }}>{text}</Box>
+      <Box sx={{ fontFamily: "sans-serif"}}>{text}</Box>
       <FormControl sx={{ mb: 1 }} fullWidth variant="outlined">
         {/* <InputLabel htmlFor="outlined-adornment-password">{text}</InputLabel> */}
         <OutlinedInput
@@ -36,10 +36,10 @@ export const PasswordInput = (props: InputPasswordProps) => {
           placeholder="*********"
           type={showPassword ? "text" : "password"}
           name={name}
-          onChange={(e: any) => setCode(e.target.value)}
+          onChange={onchange}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton onClick={handleClickShowPassword}>
+              <IconButton onClick={handleClickShowPassword} edge="end">
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>

@@ -3,7 +3,7 @@ import { Stack, Box, Paper, InputBase, Button } from "@mui/material";
 import { InputField } from "../createAccount/Input";
 import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { InputPassword } from "../createAccount/InputPassword";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 
@@ -13,7 +13,13 @@ type LoginModalProps = {
 
 export const LoginModal = (props: LoginModalProps) => {
   const { setOpen } = props;
-  const [userdata, setUserdata] = useState({});
+  const [userdata, setUserdata] = useState<{ email: string; password: string }>(
+    {
+      email: "",
+      password: "",
+    }
+  );
+  const [disable, setDisable] = useState(true);
   const [error, setError] = useState<any>();
   const { push } = useRouter();
 
@@ -22,6 +28,15 @@ export const LoginModal = (props: LoginModalProps) => {
     setUserdata({ ...userdata, [name]: value });
     console.log(userdata);
   };
+
+  useEffect(() => {
+    if (userdata.email !== "" && userdata.password !== "") {
+      setDisable(false);
+      console.log(disable);
+    } else if (userdata.email === "" && userdata.password === "") {
+      setDisable(true);
+    }
+  }, [userdata]);
 
   const handleClick = async () => {
     try {
@@ -105,9 +120,10 @@ export const LoginModal = (props: LoginModalProps) => {
             sx={{
               height: "48px",
               width: "100%",
-              backgroundColor: "#18BA51",
+              backgroundColor: `${disable ? "grey" : "green"}`,
               color: "black",
             }}
+            disabled={disable ? true : false}
           >
             Нэвтрэх
           </Button>

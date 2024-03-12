@@ -12,19 +12,16 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { PasswordInput } from "./PasswordInput";
 
 type CodeType = {
-  setCode: React.Dispatch<React.SetStateAction<number>>;
+  setCode: React.Dispatch<React.SetStateAction<string>>;
 };
 export const Code = (props: CodeType) => {
   const { setCode } = props;
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   return (
     <Stack>
       <Stack
         sx={{
-          marginBottom: "30px",
+          marginBottom: "",
           fontSize: "23px",
           fontFamily: "sans-serif",
         }}

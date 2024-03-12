@@ -41,3 +41,13 @@ export const numberController = async (req: Request, res: Response) => {
     res.send(err.message);
   }
 };
+
+import { rePassword } from "../../queries/user/rePassword";
+export const rePasswordController = async (req: Request, res: Response) => {
+  try {
+    const temp = await rePassword(req, res);
+    res.send(temp);
+  } catch (err: any) {
+    res.send(err.message);
+  }
+};

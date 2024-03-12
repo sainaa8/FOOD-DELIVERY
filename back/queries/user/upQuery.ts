@@ -18,7 +18,7 @@ export const upQuery = async (req: Request, res: Response) => {
     console.log(user);
 
     if (!user) {
-      throw new Error("User not found");
+      return "User not found";
     }
     const randomNumber = Math.floor(Math.random() * 1000000);
     console.log(randomNumber);

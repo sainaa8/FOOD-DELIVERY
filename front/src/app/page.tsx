@@ -3,25 +3,61 @@
 import Image from "next/image";
 
 import { Button, Typography } from "@mui/material";
-import { SignUp } from "@/components/createAccount/SingUp";
-import { Grid, Box } from "@mui/material";
+
+import { Grid, Box, Stack } from "@mui/material";
+import { Options } from "@/components/home/Options";
+import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
+import SetMealOutlinedIcon from "@mui/icons-material/SetMealOutlined";
 
 export default function Home() {
-  // const str: string = "fasdf";
-  // const num: number = 45;
-  // const bool: boolean = true;
-  // const obj: object = {};
-  // const obj1: { [key: string]: string } = {
-  //   name: "sd",
-  // };
-  // const arr: string[] = [""];
-  // const obj2: Record<string, number> = {};
+  const moc = [
+    {
+      icon: <AutoStoriesOutlinedIcon />,
+      text1: "Хүргэлтийн төлөв хянах",
+      text2: "Захиалга бэлтгэлийн явцыг хянах",
+    },
+    {
+      icon: <AutoStoriesOutlinedIcon />,
+      text1: "Шуурхай хүргэлт",
+      text2: "Захиалга бэлтгэлийн явцыг хянах",
+    },
+    {
+      icon: <AutoStoriesOutlinedIcon />,
+      text1: "Эрүүл, баталгаат орц",
+      text2: "Захиалга бэлтгэлийн явцыг хянах",
+    },
+    {
+      icon: <AutoStoriesOutlinedIcon />,
+      text1: "Хоолны өргөн сонголтх",
+      text2: "Захиалга бэлтгэлийн явцыг хянах",
+    },
+  ];
+
   return (
-    <Grid
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-    >
-      {/* <SignUp /> */}
-      <Box>hallo world</Box>
-    </Grid>
+    <Stack sx={{ display: "flex", justifyContent: "center" }}>
+      <Stack>
+        <Stack sx={{ width: "100vw", height: "790px", position: "relative" }}>
+          <Image src="/desc.png" alt="" layout="fill" />
+        </Stack>
+
+        <Stack
+          direction="row"
+          sx={{
+            padding: "120px 0",
+            alignItems: "center",
+            direction: "row",
+            justifyContent: "space-around",
+            flexWrap: "wrap",
+          }}
+        >
+          {moc?.map((el, index) => (
+            <div key={index}>
+              <Options icon={el.icon} text1={el.text1} text2={el.text2} />
+            </div>
+          ))}
+        </Stack>
+      </Stack>
+    </Stack>
   );
 }
