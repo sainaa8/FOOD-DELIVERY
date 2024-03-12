@@ -174,7 +174,7 @@ export const RecoverPass = () => {
           width: "100%",
           backgroundColor: `${disabledd ? "grey" : "green"}`,
           borderColor: "grey",
-          color: "black",
+          color: `${disabledd ? "black" : "white"}`,
         }}
         disabled={disabledd ? true : false}
 

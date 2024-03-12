@@ -81,7 +81,7 @@ export const HeaderRight = () => {
           fontSize: "26px",
           gap: "10px",
           fontFamily: "sans-serif",
-          marginBottom: "10px",
+
           fontWeight: "700px",
         }}
       >
@@ -100,7 +100,7 @@ export const HeaderRight = () => {
           fontSize: "26px",
           gap: "10px",
           fontFamily: "sans-serif",
-          marginBottom: "10px",
+
           fontWeight: "700px",
         }}
       >

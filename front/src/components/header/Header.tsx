@@ -3,6 +3,7 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Image from "next/image";
+import { Stack } from "@mui/material";
 
 import { Container } from "postcss";
 
@@ -19,8 +20,8 @@ export const Header = () => {
         width: "100vw",
       }}
     >
-      <Grid
-        container
+      <Stack
+        direction="row"
         spacing={2}
         sx={{
           width: "30%",
@@ -33,34 +34,31 @@ export const Header = () => {
         }}
       >
         <Image alt="" src={"/Vector.png"} width={50} height={40} />
-        <Grid
-          item
+        <Stack
           sx={{
             marginBottom: "17px",
           }}
         >
-          <Box>НҮҮР</Box>
-        </Grid>
-        <Grid
-          item
+          НҮҮР
+        </Stack>
+        <Stack
           sx={{
             marginBottom: "17px",
           }}
         >
-          <Box>ХООЛНЫ ЦЭС</Box>
-        </Grid>
-        <Grid
-          item
+          ХООЛНЫ ЦЭС
+        </Stack>
+        <Stack
           sx={{
             marginBottom: "17px",
           }}
         >
-          <Box>ХҮРГЭЛТИЙН БҮС</Box>
-        </Grid>
-      </Grid>
-      <Grid>
+          ХҮРГЭЛТИЙН БҮС
+        </Stack>
+      </Stack>
+      <Stack>
         <HeaderRight />
-      </Grid>
+      </Stack>
     </Grid>
   );
 };

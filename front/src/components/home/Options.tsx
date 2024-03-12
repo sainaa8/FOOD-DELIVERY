@@ -56,3 +56,49 @@ export const Options = (props: PropsType) => {
     </Stack>
   );
 };
+// import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
+import SetMealOutlinedIcon from "@mui/icons-material/SetMealOutlined";
+
+export const Option = () => {
+  const moc = [
+    {
+      icon: <AutoStoriesOutlinedIcon fontSize="40px" />,
+      text1: "Хүргэлтийн төлөв хянах",
+      text2: "Захиалга бэлтгэлийн явцыг хянах",
+    },
+    {
+      icon: <AccessTimeOutlinedIcon fontSize="40px" />,
+      text1: "Шуурхай хүргэлт",
+      text2: "Захиалга бэлтгэлийн явцыг хянах",
+    },
+    {
+      icon: <SetMealOutlinedIcon fontSize="40px" />,
+      text1: "Эрүүл, баталгаат орц",
+      text2: "Захиалга бэлтгэлийн явцыг хянах",
+    },
+    {
+      icon: <AutoStoriesOutlinedIcon fontSize="40px" />,
+      text1: "Хоолны өргөн сонголтх",
+      text2: "Захиалга бэлтгэлийн явцыг хянах",
+    },
+  ];
+  return (
+    <Stack
+      direction="row"
+      sx={{
+        alignItems: "center",
+        gap: "30px",
+        direction: "row",
+        justifyContent: "space-around",
+        flexWrap: "wrap",
+      }}
+    >
+      {moc?.map((el, index) => (
+        <div key={index}>
+          <Options icon={el.icon} text1={el.text1} text2={el.text2} />
+        </div>
+      ))}
+    </Stack>
+  );
+};

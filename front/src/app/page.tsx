@@ -2,61 +2,41 @@
 
 import Image from "next/image";
 
-import { Button, Typography } from "@mui/material";
-
 import { Grid, Box, Stack } from "@mui/material";
-import { Options } from "@/components/home/Options";
-import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
-import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
-import SetMealOutlinedIcon from "@mui/icons-material/SetMealOutlined";
+import { Option } from "@/components/home/Options";
+import { Sale } from "@/components/home/Sale";
+import { MainFood } from "@/components/home/MainFood";
+import { Morsel } from "@/components/home/Morsel";
+import { Sweet } from "@/components/home/Sweet";
 
 export default function Home() {
-  const moc = [
-    {
-      icon: <AutoStoriesOutlinedIcon />,
-      text1: "Хүргэлтийн төлөв хянах",
-      text2: "Захиалга бэлтгэлийн явцыг хянах",
-    },
-    {
-      icon: <AutoStoriesOutlinedIcon />,
-      text1: "Шуурхай хүргэлт",
-      text2: "Захиалга бэлтгэлийн явцыг хянах",
-    },
-    {
-      icon: <AutoStoriesOutlinedIcon />,
-      text1: "Эрүүл, баталгаат орц",
-      text2: "Захиалга бэлтгэлийн явцыг хянах",
-    },
-    {
-      icon: <AutoStoriesOutlinedIcon />,
-      text1: "Хоолны өргөн сонголтх",
-      text2: "Захиалга бэлтгэлийн явцыг хянах",
-    },
-  ];
-
   return (
     <Stack sx={{ display: "flex", justifyContent: "center" }}>
       <Stack>
-        <Stack sx={{ width: "100vw", height: "790px", position: "relative" }}>
-          <Image src="/desc.png" alt="" layout="fill" />
-        </Stack>
-
         <Stack
-          direction="row"
           sx={{
-            padding: "120px 0",
-            alignItems: "center",
-            direction: "row",
-            justifyContent: "space-around",
-            flexWrap: "wrap",
+            width: "100vw",
+            height: "790px",
+            position: "relative",
+            marginTop: "40px",
           }}
         >
-          {moc?.map((el, index) => (
-            <div key={index}>
-              <Options icon={el.icon} text1={el.text1} text2={el.text2} />
-            </div>
-          ))}
+          <Image src="/desc.png" alt="" layout="fill" />
         </Stack>
+        <div
+          style={{
+            padding: "120px 0",
+            gap: "90px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Option />
+          <Sale />
+          <MainFood />
+          <Morsel />
+          <Sweet />
+        </div>
       </Stack>
     </Stack>
   );
