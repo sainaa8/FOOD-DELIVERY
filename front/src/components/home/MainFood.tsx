@@ -75,6 +75,8 @@ export const MainFood = () => {
             alignItems: "center",
             gap: "10px",
             marginBottom: "10px",
+            "&:hover": { color: "orange", cursor: "pointer" },
+            "&:active": { transform: "scale(0.9)" },
           }}
         >
           Бүгдийг харах

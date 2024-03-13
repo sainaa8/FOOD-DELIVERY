@@ -12,15 +12,17 @@ export const Options = (props: PropsType) => {
   return (
     <Stack
       sx={{
-        width: "400px",
+        width: "380px",
         height: "425px",
         marginLeft: "-14%",
         flexBasis: 300,
-
         justifyContent: "space-around",
+        transition: "1s",
+        "&:hover": { transform: "scale(1.1)", cursor: "pointer" },
+        "&:active": { transform: "scale(0.9)" },
       }}
     >
-      <Image alt="" src={zurag} width={510} height={385} />
+      <Image alt="" src={zurag} width={500} height={345} />
       <Stack sx={{ marginLeft: "20px" }}>
         <Stack
           sx={{

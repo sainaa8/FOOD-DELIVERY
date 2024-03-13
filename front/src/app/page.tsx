@@ -12,7 +12,7 @@ import { Sweet } from "@/components/home/Sweet";
 export default function Home() {
   return (
     <Stack sx={{ display: "flex", justifyContent: "center" }}>
-      <Stack>
+      <Stack sx={{ alignItems: "center", justifyContent: "center" }}>
         <Stack
           sx={{
             width: "100vw",
@@ -29,6 +29,7 @@ export default function Home() {
             gap: "90px",
             display: "flex",
             flexDirection: "column",
+            width: "90%",
           }}
         >
           <Option />

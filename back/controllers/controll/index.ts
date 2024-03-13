@@ -51,3 +51,13 @@ export const rePasswordController = async (req: Request, res: Response) => {
     res.send(err.message);
   }
 };
+
+import { checkToken } from "../../queries/user/checkToken";
+export const checkTokenController = async (req: Request, res: Response) => {
+  try {
+    const temp = await checkToken(req, res);
+    res.send(temp);
+  } catch (err: any) {
+    res.send(err.message);
+  }
+};

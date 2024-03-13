@@ -4,11 +4,24 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Image from "next/image";
 import { Stack } from "@mui/material";
-
-import { Container } from "postcss";
-
+import { useRouter } from "next/navigation";
 import { HeaderRight } from "./HeaderRight";
+import { useLocation } from "react-router-dom";
+// import { Pathname } from "react-router-dom";
+import { usePathname } from "next/navigation";
+
 export const Header = () => {
+  const { push } = useRouter();
+  const pathname = usePathname();
+  const handleClickMenu = () => {
+    push("/menu");
+    console.log("asd");
+  };
+
+  const handleClickHome = () => {
+    push("/");
+  };
+
   return (
     <Grid
       container
@@ -35,15 +48,19 @@ export const Header = () => {
       >
         <Image alt="" src={"/Vector.png"} width={50} height={40} />
         <Stack
+          onClick={handleClickHome}
           sx={{
             marginBottom: "17px",
+            color: `${pathname === "/" ? "green" : "black"}`,
           }}
         >
           НҮҮР
         </Stack>
         <Stack
+          onClick={handleClickMenu}
           sx={{
             marginBottom: "17px",
+            color: `${pathname === "/menu" ? "green" : "black"}`,
           }}
         >
           ХООЛНЫ ЦЭС

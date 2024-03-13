@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const PasswordHash = (password: string) => {
   const salt = bcrypt.genSaltSync(10);
@@ -18,6 +20,8 @@ export const tokenizer = async (userId: string) => {
 
 import nodemailer, { Transport, TransportOptions } from "nodemailer";
 
+const password = process.env.APP_HOST_EMAIL_PASSWORD;
+
 export const transport = nodemailer.createTransport({
   service: "gmail",
   host: "smtp.gmail.com",
@@ -25,6 +29,7 @@ export const transport = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "gnasainaa4@gmail.com",
-    pass: "maojfktndbavihkv",
+    pass: password,
+    // pass: "maojfktndbavihkv",
   },
 });

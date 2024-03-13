@@ -1,9 +1,15 @@
 import { Router } from "express";
 import { createMWare } from "../../middleware/createMiddleWare.ts/createMWare";
-import { createUser, login, update } from "../../controllers";
+import {
+  createUser,
+  login,
+  update,
+  rePasswordController,
+  numberController,
+  checkTokenController,
+} from "../../controllers";
 import { loginMWare } from "../../middleware/loginMWare";
-import { numberController } from "../../controllers";
-import { rePasswordController } from "../../controllers";
+
 export const router = Router();
 
 router.post("/signup", createMWare, createUser);
@@ -12,3 +18,4 @@ router.post("/login", loginMWare, login);
 router.post("/number", numberController);
 router.post("/recover", update);
 router.post("/repassword", rePasswordController);
+router.post("/checkToken", checkTokenController);

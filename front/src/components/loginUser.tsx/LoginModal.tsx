@@ -7,12 +7,12 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 
-type LoginModalProps = {
-  setOpen: Dispatch<SetStateAction<boolean>>;
-};
+// type LoginModalProps = {
+//   setOpen: Dispatch<SetStateAction<boolean>>;
+// };
 
-export const LoginModal = (props: LoginModalProps) => {
-  const { setOpen } = props;
+export const LoginModal = () => {
+  // const { setOpen } = props;
   const [userdata, setUserdata] = useState<{ email: string; password: string }>(
     {
       email: "",
@@ -46,8 +46,10 @@ export const LoginModal = (props: LoginModalProps) => {
       );
 
       localStorage.setItem("Token", data.result);
-      push("/");
-      setOpen(false);
+      window.location.href = "/";
+      // push("/");
+
+      // setOpen(false);
     } catch (e: unknown) {
       const error = e as AxiosError;
       setError(error.response?.data);
@@ -60,7 +62,6 @@ export const LoginModal = (props: LoginModalProps) => {
 
   return (
     <div>
-      {" "}
       <Stack
         sx={{
           width: "448px",
@@ -93,10 +94,15 @@ export const LoginModal = (props: LoginModalProps) => {
             onchange={(e) => handleChange(e)}
           />
           <Box
-            sx={{ width: "100%", textAlign: "right" }}
+            sx={{
+              width: "100%",
+              textAlign: "right",
+              textDecoration: "underline",
+              color: "blue",
+            }}
             onClick={handlePushToRecoverpage}
           >
-            Нууц үг сэргээх
+            Нууц үг сэргээх ?
           </Box>
           {error && (
             <Box

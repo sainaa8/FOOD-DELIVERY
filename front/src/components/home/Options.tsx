@@ -12,14 +12,16 @@ export const Options = (props: PropsType) => {
   return (
     <Stack
       sx={{
-        width: "400px",
-        height: "225px",
+        width: "370px",
+        height: "195px",
         border: "1px solid grey",
         flexBasis: 300,
         borderRadius: "16px",
         boxShadow: "5px 5px 20px grey",
         padding: "20px 20px",
         justifyContent: "space-around",
+        transition: "1s",
+        "&:hover": { transform: "scale(1.1)", cursor: "pointer" },
       }}
     >
       <Stack
