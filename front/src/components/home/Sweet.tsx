@@ -42,54 +42,6 @@ export const Sweet = () => {
       <Stack
         direction="row"
         sx={{
-          width: "92%",
-          marginBottom: "30px",
-          paddingLeft: "20px",
-          justifyContent: "space-between",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            gap: "20px",
-            width: "85%",
-          }}
-        >
-          <Box>
-            <Image alt="" src="/star.png" width={40} height={40} />
-          </Box>
-          <Box
-            sx={{
-              fontSize: "33px",
-              fontFamily: "sans-serif",
-              fontWeight: "bold",
-              marginBottom: "20px",
-            }}
-          >
-            Амттан
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            fontSize: "23px",
-            fontFamily: "sans-serif",
-            color: "green",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginBottom: "10px",
-            "&:hover": { color: "orange", cursor: "pointer" },
-            "&:active": { transform: "scale(0.9)" },
-          }}
-        >
-          Бүгдийг харах
-          <ArrowForwardIosIcon />
-        </Box>
-         
-      </Stack>
-      <Stack
-        direction="row"
-        sx={{
           gap: "30px",
           alignItems: "center",
           direction: "row",

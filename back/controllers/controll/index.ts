@@ -61,3 +61,33 @@ export const checkTokenController = async (req: Request, res: Response) => {
     res.send(err.message);
   }
 };
+
+import { userUpdatQuery } from "../../queries/user/userUpdate";
+export const userUpController = async (req: Request, res: Response) => {
+  try {
+    const tempup = await userUpdatQuery(req, res);
+    res.send(tempup);
+  } catch (err: any) {
+    res.send(err.message);
+  }
+};
+
+import { createFoodQuery } from "../../queries/food/createFood";
+export const CreateFoodController = async (req: Request, res: Response) => {
+  try {
+    const tempCF = await createFoodQuery(req);
+    res.send(tempCF);
+  } catch (err: any) {
+    res.send(err.message);
+  }
+};
+
+import { getFoodsQuery } from "../../queries/food/getFoodsQuery";
+export const GetFoodsController = async (req: Request, res: Response) => {
+  try {
+    const tempGD = await getFoodsQuery();
+    res.send(tempGD);
+  } catch (err: any) {
+    res.send(err.message);
+  }
+};

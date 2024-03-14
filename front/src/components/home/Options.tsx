@@ -7,8 +7,9 @@ type PropsType = {
   text1: string;
   text2: string;
 };
-export const Options = (props: PropsType) => {
+export const Opt = (props: PropsType) => {
   const { icon, text1, text2 } = props;
+
   return (
     <Stack
       sx={{
@@ -98,7 +99,7 @@ export const Option = () => {
     >
       {moc?.map((el, index) => (
         <div key={index}>
-          <Options icon={el.icon} text1={el.text1} text2={el.text2} />
+          <Opt icon={el.icon} text1={el.text1} text2={el.text2} />
         </div>
       ))}
     </Stack>

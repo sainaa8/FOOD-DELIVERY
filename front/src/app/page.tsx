@@ -6,17 +6,24 @@ import { Grid, Box, Stack } from "@mui/material";
 import { Option } from "@/components/home/Options";
 import { Sale } from "@/components/home/Sale";
 import { MainFood } from "@/components/home/MainFood";
-import { Morsel } from "@/components/home/Morsel";
-import { Sweet } from "@/components/home/Sweet";
+
+
+import * as React from "react";
+
+
 
 export default function Home() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <Stack sx={{ display: "flex", justifyContent: "center" }}>
       <Stack sx={{ alignItems: "center", justifyContent: "center" }}>
         <Stack
           sx={{
             width: "100vw",
-            height: "790px",
+            height: "800px",
             position: "relative",
             marginTop: "40px",
           }}
@@ -32,13 +39,13 @@ export default function Home() {
             width: "90%",
           }}
         >
+          {/* <div onClick={handleOpen}>sadfasdf</div> */}
           <Option />
           <Sale />
-          <MainFood />
-          <Morsel />
-          <Sweet />
+          <MainFood handleOpen={handleOpen} />
         </div>
       </Stack>
+      
     </Stack>
   );
 }

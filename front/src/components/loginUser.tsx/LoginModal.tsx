@@ -46,6 +46,7 @@ export const LoginModal = () => {
       );
 
       localStorage.setItem("Token", data.result);
+      ///loading
       window.location.href = "/";
       // push("/");
 

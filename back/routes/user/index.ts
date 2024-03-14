@@ -7,6 +7,7 @@ import {
   rePasswordController,
   numberController,
   checkTokenController,
+  userUpController,
 } from "../../controllers";
 import { loginMWare } from "../../middleware/loginMWare";
 
@@ -19,3 +20,4 @@ router.post("/number", numberController);
 router.post("/recover", update);
 router.post("/repassword", rePasswordController);
 router.post("/checkToken", checkTokenController);
+router.post("/userup", userUpController);

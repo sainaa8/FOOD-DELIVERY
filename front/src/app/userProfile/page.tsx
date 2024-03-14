@@ -6,7 +6,7 @@ function UserPro() {
       direction="row"
       justifyContent="center"
       alignContent="center"
-      sx={{ height: "100vh", width: "100vw", display: "flex" }}
+      sx={{ width: "100vw", display: "flex", padding: "220px 0px" }}
     >
       <UserProfile />
     </Stack>
