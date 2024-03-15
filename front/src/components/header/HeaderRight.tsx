@@ -12,12 +12,18 @@ import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlin
 import { useContext } from "react";
 import { CheckTokenContext } from "../ckeckToken/CheckToken";
 import { useRouter } from "next/navigation";
+import { SearchContext } from "../Provider/searchProvider";
 
 export const HeaderRight = () => {
   const { userData, isLoggedIn } = useContext(CheckTokenContext);
-  console.log(isLoggedIn);
-
+  const { search, setSearch } = useContext(SearchContext);
   const { push } = useRouter();
+
+  const handlerPIZDAA = () => {
+    push("search");
+  };
+
+  console.log(isLoggedIn);
 
   const handlerClick = () => {
     if (!isLoggedIn) {
@@ -50,13 +56,17 @@ export const HeaderRight = () => {
           marginTop: "20px",
         }}
       >
-        <IconButton sx={{ p: "10px" }} aria-label="search">
+        <IconButton
+          sx={{ p: "10px" }}
+          aria-label="search"
+          onClick={handlerPIZDAA}
+        >
           <Search />
         </IconButton>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
           placeholder="Хайх "
-          inputProps={{ "aria-label": "search google maps" }}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </Paper>
       <Stack

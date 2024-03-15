@@ -85,7 +85,7 @@ export const CreateFoodController = async (req: Request, res: Response) => {
 import { getFoodsQuery } from "../../queries/food/getFoodsQuery";
 export const GetFoodsController = async (req: Request, res: Response) => {
   try {
-    const tempGD = await getFoodsQuery();
+    const tempGD = await getFoodsQuery(req);
     res.send(tempGD);
   } catch (err: any) {
     res.send(err.message);

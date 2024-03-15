@@ -38,6 +38,8 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
 
   const handleFoodClick = (event: MouseEvent<HTMLDivElement>) => {
     const foodId = event.currentTarget.id;
+    console.log(foodId);
+
     const filteredFood = foods.find(({ _id }) => _id === foodId);
     handleModalClick();
     setFoundFood(filteredFood as FoodType);

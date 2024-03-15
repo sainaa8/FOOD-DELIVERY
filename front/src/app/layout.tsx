@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/header/Header";
 import { Footer } from "@/components/footer/Footer";
 import { CheckTokenProvider } from "@/components/ckeckToken/CheckToken";
+import { SearchProvider } from "@/components/Provider/searchProvider";
 
 export const metadata: Metadata = {
   title: "Food delivery",
@@ -16,11 +17,13 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <CheckTokenProvider>
-          <Header />
-          {children}
-          <Footer />
-        </CheckTokenProvider>
+        <SearchProvider>
+          <CheckTokenProvider>
+            <Header />
+            {children}
+            <Footer />
+          </CheckTokenProvider>
+        </SearchProvider>
       </body>
     </html>
   );

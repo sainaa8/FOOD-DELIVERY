@@ -1,21 +1,25 @@
-"use client";
-
 import Image from "next/image";
 
 import { Grid, Box, Stack } from "@mui/material";
 import { Option } from "@/components/home/Options";
 import { Sale } from "@/components/home/Sale";
 import { MainFood } from "@/components/home/MainFood";
-
-
+import axios from "axios";
 import * as React from "react";
 
+const getAllFoods = async () => {
+  try {
+    const { data } = await axios.get<FoodType[]>("http://localhost:8001/foods");
 
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export default function Home() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export default async function Home() {
+  const data = await getAllFoods();
+  console.log(data);
 
   return (
     <Stack sx={{ display: "flex", justifyContent: "center" }}>
@@ -42,10 +46,9 @@ export default function Home() {
           {/* <div onClick={handleOpen}>sadfasdf</div> */}
           <Option />
           <Sale />
-          <MainFood handleOpen={handleOpen} />
+          <MainFood data={data} />
         </div>
       </Stack>
-      
     </Stack>
   );
 }

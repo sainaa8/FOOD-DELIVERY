@@ -40,6 +40,16 @@ export const UserProfile = () => {
     email: "",
     phone: "",
   });
+  ///////gertee hiinee
+  // useEffect(() => {
+  //   setUserUpdate({
+  //     ...userData,
+  //     id: userData._id,
+  //     email: userData.email,
+  //     name: userData.name,
+  //     phone: userData.phone,
+  //   });
+  // }, [edit]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // setUserUpdate({ ...userUpdate, id: userData._id });

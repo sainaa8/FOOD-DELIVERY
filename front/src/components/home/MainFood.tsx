@@ -5,24 +5,12 @@ import { AllFoods } from "./AllFoods";
 import Image from "next/image";
 
 //////////////////////server side
-
-const getAllFoods = async () => {
-  try {
-    const { data } = await axios.get<FoodType[]>("http://localhost:8001/foods");
-
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+type ddda = {
+  data: FoodType[];
 };
 
-type OpenModelType = {
-  handleOpen: () => void;
-};
-
-export const MainFood = async (props: OpenModelType) => {
-  const data = await getAllFoods();
-
+export const MainFood = ({ data }: ddda) => {
+  console.log(data);
   return (
     <Stack
       sx={{
@@ -32,7 +20,6 @@ export const MainFood = async (props: OpenModelType) => {
         flexWrap: "wrap",
       }}
     >
-      {/*  */}
       <Stack
         direction="row"
         sx={{
