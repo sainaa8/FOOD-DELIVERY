@@ -15,14 +15,15 @@ import { useRouter } from "next/navigation";
 
 export const HeaderRight = () => {
   const { userData, isLoggedIn } = useContext(CheckTokenContext);
+  console.log(isLoggedIn);
 
   const { push } = useRouter();
 
   const handlerClick = () => {
     if (!isLoggedIn) {
       push("/login");
-    }else{
-      push("/userProfile")
+    } else {
+      push("/userProfile");
     }
   };
 

@@ -9,9 +9,23 @@ import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import { useContext, useState, useEffect } from "react";
 import { CheckTokenContext } from "../ckeckToken/CheckToken";
 
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  borderRadius: "20px",
+};
+
 export const UserProfile = () => {
   const { userData, isLoggedIn } = useContext(CheckTokenContext);
-
   const [edit, setEdit] = useState(false);
 
   type UserUpType = {
@@ -20,7 +34,6 @@ export const UserProfile = () => {
     email: string;
     phone: string;
   };
-
   const [userUpdate, setUserUpdate] = useState<UserUpType>({
     id: "",
     name: "",
@@ -42,6 +55,15 @@ export const UserProfile = () => {
   // console.log(isLoggedIn);
 
   // const;
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const exit = () => {
+    localStorage.removeItem("Token");
+    window.location.href = "/";
+  };
 
   return (
     <Stack
@@ -66,7 +88,6 @@ export const UserProfile = () => {
           edit={edit}
           onchange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
         />
-
         <CustomizedInputBase
           name="phone"
           title="Утасны дугаар"
@@ -75,7 +96,6 @@ export const UserProfile = () => {
           edit={edit}
           onchange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
         />
-
         <CustomizedInputBase
           name="email"
           title="Имэйл хаяг"
@@ -84,7 +104,6 @@ export const UserProfile = () => {
           edit={edit}
           onchange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
         />
-
         {!edit ? (
           <div
             style={{ gap: "12px", display: "flex", flexDirection: "column" }}
@@ -118,12 +137,11 @@ export const UserProfile = () => {
             >
               <div
                 style={{
-                  // width: "30px",
-                  // height: "30px",
                   padding: "7px 9px",
                   border: "1px solid black",
                   borderRadius: "50%",
                 }}
+                onClick={handleOpen}
               >
                 <ExitToAppOutlinedIcon />
               </div>
@@ -138,8 +156,67 @@ export const UserProfile = () => {
           >
             Хадгалах
           </Button>
-        )}
+        )}{" "}
       </Stack>
+      <Modal
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={style}>
+          <Stack
+            sx={{
+              width: "382px",
+              height: "153px",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: "20px",
+              fontFamily: "sans-serif",
+              fontWeight: "600px",
+              textAlign: "center",
+            }}
+          >
+            Та системээс гарахдаа итгэлтэй байна уу?
+          </Stack>
+          <Stack direction="row" sx={{ width: "100%" }}>
+            <div
+              onClick={exit}
+              style={{
+                width: "50%",
+                backgroundColor: "#d1f1dc",
+                padding: "25px 0px",
+                display: "flex",
+                justifyContent: "center",
+                fontSize: "20px",
+                fontFamily: "sans-serif",
+                fontWeight: "600px",
+                color: "black",
+              }}
+            >
+              Тийм
+            </div>
+            <div
+              onClick={handleClose}
+              style={{
+                width: "50%",
+                backgroundColor: "#18ba51",
+                padding: "25px 0px",
+                display: "flex",
+                justifyContent: "center",
+                borderBottomRightRadius: "20px",
+                fontSize: "20px",
+                fontFamily: "sans-serif",
+                fontWeight: "600px",
+                color: "white",
+              }}
+            >
+              Үгүй
+            </div>
+          </Stack>
+        </Box>
+      </Modal>
     </Stack>
   );
 };
