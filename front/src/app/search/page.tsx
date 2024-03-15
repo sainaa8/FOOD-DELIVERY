@@ -1,30 +1,43 @@
 "use client";
 import React from "react";
-
-import { useContext } from "react";
+import axios from "axios";
+import { useContext, useEffect } from "react";
 import { SearchContext } from "@/components/Provider/searchProvider";
-export default function Search() {
+
+type Obj = {
+  body: object;
+};
+export default async function Search() {
   const { search, setSearch } = useContext(SearchContext);
   console.log(search);
+  const body = {
+    filter: {
+      " $or": [
+        {
+          name: {
+            " $regex": search,
+            " $options": "i",
+          },
+        },
+        {
+          price: {
+            "  $regex": search,
+          },
+        },
+      ],
+    },
+  };
+  console.log(body);
+  useEffect(() => {
+    const getFilteData = async () => {
+      const { data } = await axios.get("http://localhost:8001/foods", body);
+      console.log(data);
+    };
+    getFilteData();
+  }, []);
 
   return <div>Search</div>;
 }
-
-// "filter":{
-//   "$or":[
-//       {
-//           "name":{
-//               "$regex":"100000",
-//               "$options":"i"
-//           }
-//       },
-//       {
-//           "price":{
-//               "$regex":"100000"
-//           }
-//       }
-//   ]
-// }
 
 //////////////////////////////////////////
 
