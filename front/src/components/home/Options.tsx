@@ -13,8 +13,8 @@ export const Opt = (props: PropsType) => {
   return (
     <Stack
       sx={{
-        width: "370px",
-        height: "195px",
+        width: "264px",
+        height: "155px",
         border: "1px solid grey",
         flexBasis: 300,
         borderRadius: "16px",
@@ -28,7 +28,7 @@ export const Opt = (props: PropsType) => {
       <Stack
         sx={{
           color: "green",
-          fontSize: "60px",
+          fontSize: "40px",
           marginLeft: "20px",
           marginTop: "20px",
         }}
@@ -38,7 +38,7 @@ export const Opt = (props: PropsType) => {
       <Stack>
         <Box
           sx={{
-            fontSize: "30px",
+            fontSize: "18px",
             fontFamily: "sans-serif",
             fontWeight: "bold",
           }}
@@ -47,7 +47,7 @@ export const Opt = (props: PropsType) => {
         </Box>
         <Box
           sx={{
-            fontSize: "24px",
+            fontSize: "14px",
             fontFamily: "sans-serif",
             color: "#272727",
             marginTop: "5px",

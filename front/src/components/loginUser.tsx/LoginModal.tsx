@@ -100,6 +100,7 @@ export const LoginModal = () => {
               textAlign: "right",
               textDecoration: "underline",
               color: "blue",
+              cursor: "pointer",
             }}
             onClick={handlePushToRecoverpage}
           >

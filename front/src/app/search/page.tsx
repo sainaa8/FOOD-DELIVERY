@@ -5,6 +5,7 @@ import { useContext } from "react";
 //import { SearchContext } from "@/components/Provider/searchProvider";
 import { SearchMap } from "@/components/search/searchMap";
 import { useSearchParams } from "next/navigation";
+import { Stack } from "@mui/material";
 const getFilterFoods = async () => {
   ///const { search, setSearch } = useContext(SearchContext);
   const params = useSearchParams();
@@ -46,9 +47,30 @@ export default async function Search() {
   console.log(data);
 
   return (
-    <div>
-      <SearchMap data={data} />
-    </div>
+    <Stack sx={{ width: "100vw", alignItems: "center" }}>
+      <div style={{ width: "90%" }}>
+        <div
+          style={{
+            fontSize: "30px",
+            marginLeft: "150px",
+            marginBottom: "30px",
+            border: "1px solid green",
+            borderRadius: "17px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "170px",
+            fontFamily: "sans-serif",
+            padding: "5px 0px",
+            color: "green",
+            marginTop: "60px",
+          }}
+        >
+          Хайлт
+        </div>
+        <SearchMap data={data} />
+      </div>
+    </Stack>
   );
 }
 

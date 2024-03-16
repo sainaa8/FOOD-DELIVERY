@@ -1,6 +1,7 @@
 "use client";
 import React, { ChangeEvent } from "react";
 import axios, { AxiosError } from "axios";
+import { AnimatePresence, motion } from "framer-motion";
 import { Stack, Box, Button } from "@mui/material";
 import { Email } from "./Email";
 import { Code } from "./Code";
@@ -15,6 +16,7 @@ export const RecoverPass = () => {
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [disabledd, setDisabled] = useState<boolean>(true);
+  const [success, setSuccess] = useState(false);
 
   const [password, setPassword] = useState<{
     password: string;
@@ -117,7 +119,12 @@ export const RecoverPass = () => {
           password: password.password,
         });
         console.log(data);
-        push("/login");
+        setSuccess(true);
+
+        setTimeout(() => {
+          setSuccess(false);
+          push("/login");
+        }, 2000);
       } catch (err: unknown) {
         const error = err as AxiosError;
         console.log(error);
@@ -135,6 +142,10 @@ export const RecoverPass = () => {
         gap: "50px",
       }}
     >
+      <div>
+        <AnimatePresence>{success && <Success />}</AnimatePresence>
+      </div>
+
       <Box
         sx={{
           fontFamily: "sans-serif",
@@ -183,5 +194,31 @@ export const RecoverPass = () => {
         Үргэлжлүүлэх
       </Button>
     </Stack>
+  );
+};
+
+const Success = () => {
+  return (
+    <motion.div
+      initial={{ top: -100 }}
+      animate={{ top: 100, transition: { duration: 0.3, bounce: 0.3 } }}
+      exit={{ top: -100 }}
+      style={{
+        position: "absolute",
+
+        right: "50px",
+        borderRadius: "24px",
+        padding: "10px 30px",
+        display: "flex",
+        gap: "5px",
+        alignItems: "center",
+        boxShadow: "1px 1px 10px 1px green",
+        backgroundColor: "white",
+        color: "green",
+      }}
+    >
+      <div style={{ marginRight: "5px" }}>✔</div>
+      Мэдээлэл амжилттай хадгалагдлаа
+    </motion.div>
   );
 };

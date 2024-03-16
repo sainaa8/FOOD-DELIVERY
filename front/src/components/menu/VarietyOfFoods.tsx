@@ -23,7 +23,7 @@ export const VarietyOfFoods = () => {
             <Stack
               sx={{
                 padding: "10px 0px",
-                width: "410px",
+                width: "280px",
                 border: "1px solid black",
                 borderRadius: "8px",
                 fontSize: "25px",
@@ -36,7 +36,7 @@ export const VarietyOfFoods = () => {
             <Stack
               sx={{
                 padding: "10px 0px",
-                width: "410px",
+                width: "280px",
                 border: "1px solid black",
                 borderRadius: "8px",
                 fontSize: "25px",
@@ -49,7 +49,7 @@ export const VarietyOfFoods = () => {
             <Stack
               sx={{
                 padding: "10px 0px",
-                width: "410px",
+                width: "280px",
                 border: "1px solid black",
                 borderRadius: "8px",
                 fontSize: "25px",
@@ -62,7 +62,7 @@ export const VarietyOfFoods = () => {
             <Stack
               sx={{
                 padding: "10px 0px",
-                width: "410px",
+                width: "280px",
                 alignItems: "center",
                 border: "1px solid black",
                 borderRadius: "8px",

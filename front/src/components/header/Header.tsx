@@ -52,6 +52,7 @@ export const Header = () => {
           sx={{
             marginBottom: "17px",
             color: `${pathname === "/" ? "green" : "black"}`,
+            cursor: "pointer",
           }}
         >
           НҮҮР
@@ -61,6 +62,7 @@ export const Header = () => {
           sx={{
             marginBottom: "17px",
             color: `${pathname === "/menu" ? "green" : "black"}`,
+            cursor: "pointer",
           }}
         >
           ХООЛНЫ ЦЭС
@@ -68,6 +70,7 @@ export const Header = () => {
         <Stack
           sx={{
             marginBottom: "17px",
+            cursor: "pointer",
           }}
         >
           ХҮРГЭЛТИЙН БҮС

@@ -41,29 +41,36 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
     console.log(foodId);
 
     const filteredFood = foods.find(({ _id }) => _id === foodId);
-    handleModalClick();
     setFoundFood(filteredFood as FoodType);
+    handleModalClick();
   };
-  //   console.log(foundFood);
+  console.log(foundFood);
 
   const [num, setNum] = useState(12);
   const [moreButton, setMoreButton] = useState(false);
   console.log(num);
   const handlerMore = () => {
-    if (moreButton) {
-      setNum(foods.length);
-      setMoreButton(false);
-    } else {
+    if (!moreButton) {
       setNum(12);
       setMoreButton(true);
+    } else {
+      setNum(foods.length);
+      setMoreButton(false);
     }
   };
   return (
-    <div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Stack
         direction="row"
         sx={{
           width: "92%",
+
           marginBottom: "30px",
           paddingLeft: "20px",
           justifyContent: "space-between",
@@ -113,7 +120,8 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
       <Stack
         direction="row"
         sx={{
-          gap: "120px",
+          width: "100%",
+          gap: "40px",
           flexWrap: "wrap",
           display: "flex",
           justifyContent: "center",

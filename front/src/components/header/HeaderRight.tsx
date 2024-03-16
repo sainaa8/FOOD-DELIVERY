@@ -84,7 +84,7 @@ export const HeaderRight = () => {
           fontSize: "26px",
           gap: "10px",
           fontFamily: "sans-serif",
-
+          cursor: "pointer",
           fontWeight: "700px",
         }}
       >
@@ -98,7 +98,7 @@ export const HeaderRight = () => {
           justifyContent={"center"}
           sx={{
             width: "38px",
-
+            cursor: "pointer",
             marginLeft: "20px",
             display: "flex",
             fontSize: "26px",
@@ -129,6 +129,7 @@ export const HeaderRight = () => {
             fontFamily: "sans-serif",
             marginRight: "30px",
             fontWeight: "700px",
+            cursor: "pointer",
           }}
         >
           <PersonOutlineIcon sx={{ fontSize: "40px" }} />

@@ -13,8 +13,6 @@ export const Options = (props: PropsType) => {
   return (
     <Stack
       sx={{
-        width: "380px",
-        height: "425px",
         marginLeft: "-14%",
         flexBasis: 300,
 
@@ -24,7 +22,7 @@ export const Options = (props: PropsType) => {
         "&:active": { transform: "scale(0.9)" },
       }}
     >
-      <Image alt="" src={zurag} width={500} height={345} />
+      <Image alt="" src={zurag} width={282} height={186} />
       <Stack sx={{ marginLeft: "20px" }}>
         <Stack
           sx={{
@@ -99,7 +97,7 @@ export const Sale = () => {
     <Stack
       sx={{
         padding: "20px 30px",
-
+        width: "100%",
         direction: "row",
         justifyContent: "space-around",
         flexWrap: "wrap",

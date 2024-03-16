@@ -12,10 +12,10 @@ export const Options = (props: PropsType) => {
   return (
     <Stack
       sx={{
-        width: "380px",
-        height: "425px",
+        // width: "38px",
+        // height: "425px",
 
-        flexBasis: 300,
+        // flexBasis: 100,
         justifyContent: "space-around",
         transition: "1s",
 
@@ -26,8 +26,8 @@ export const Options = (props: PropsType) => {
       <Image
         alt=""
         src={zurag}
-        width={478}
-        height={305}
+        width={282}
+        height={186}
         style={{ borderRadius: "16px" }}
       />
       <Stack sx={{ marginLeft: "20px" }}>
