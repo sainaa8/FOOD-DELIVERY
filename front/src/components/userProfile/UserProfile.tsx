@@ -26,6 +26,8 @@ const style = {
 
 export const UserProfile = () => {
   const { userData, isLoggedIn } = useContext(CheckTokenContext);
+  console.log(userData);
+
   const [edit, setEdit] = useState(false);
 
   type UserUpType = {

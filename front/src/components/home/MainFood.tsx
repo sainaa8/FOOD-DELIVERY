@@ -9,7 +9,8 @@ type ddda = {
   data: FoodType[];
 };
 
-export const MainFood = ({ data }: ddda) => {
+export const MainFood = (props: ddda) => {
+  const { data } = props;
   console.log(data);
   return (
     <Stack

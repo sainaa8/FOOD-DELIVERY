@@ -48,9 +48,14 @@ export const CheckTokenProvider = ({ children }: any) => {
               },
             }
           );
+          console.log(data);
 
+          if (data == "provided token is not valid") {
+            setIsLoggedIn(false);
+          } else {
+            setIsLoggedIn(true);
+          }
           setUserData(data);
-          setIsLoggedIn(true);
         } catch (error) {
           console.log("errorororro");
         }

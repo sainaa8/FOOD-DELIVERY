@@ -20,7 +20,11 @@ export const HeaderRight = () => {
   const { push } = useRouter();
 
   const handlerPIZDAA = () => {
-    push("search");
+    if (search === "") {
+      push("/");
+    } else {
+      push(`/search?id=${search}`);
+    }
   };
 
   console.log(isLoggedIn);

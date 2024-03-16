@@ -9,7 +9,9 @@ import * as React from "react";
 
 const getAllFoods = async () => {
   try {
-    const { data } = await axios.get<FoodType[]>("http://localhost:8001/foods");
+    const { data } = await axios.post<FoodType[]>(
+      "http://localhost:8001/foods"
+    );
 
     return data;
   } catch (error) {
