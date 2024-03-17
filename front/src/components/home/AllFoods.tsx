@@ -1,10 +1,10 @@
 "use client";
 
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { Options } from "./OneModel";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Button from "@mui/material/Button";
-
+import React from "react";
 import { Stack, Box } from "@mui/material";
 import Image from "next/image";
 
@@ -32,19 +32,52 @@ type AllFoodsProps = {
 export const AllFoods = ({ foods }: AllFoodsProps) => {
   const [foundFood, setFoundFood] = useState<FoodType | null>(null);
   const [open, setOpenModal] = useState<boolean>(false);
+  const [amount, setAmount] = useState(1);
+  const [foodID, setFoodID] = useState("");
+  const [basketObj, setBasketObj] = useState({});
   const handleClose = () => setOpenModal(false);
-
   const handleModalClick = () => setOpenModal(!open);
+
+  const hanlerMin = () => {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    }
+  };
+
+  type BasketObjType = {
+    foodId: string;
+    amount: number;
+  };
+
+  type BasketArreyType = {
+    basketOb: BasketObjType;
+  };
+
+  // const basketArrey: any = [];
+  const [basketArrey, setBasketArrey] = useState<any>([]);
 
   const handleFoodClick = (event: MouseEvent<HTMLDivElement>) => {
     const foodId = event.currentTarget.id;
-    console.log(foodId);
+    setFoodID(foodId);
 
     const filteredFood = foods.find(({ _id }) => _id === foodId);
     setFoundFood(filteredFood as FoodType);
     handleModalClick();
   };
-  console.log(foundFood);
+
+  const Buy = () => {
+    setBasketObj({
+      ...basketObj,
+      foodId: foodID,
+      amount: amount,
+    });
+
+    setBasketArrey(basketObj);
+    // basketArrey.push(basketObj);
+  };
+  console.log(basketObj);
+
+  console.log(basketArrey);
 
   const [num, setNum] = useState(12);
   const [moreButton, setMoreButton] = useState(false);
@@ -58,6 +91,7 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
       setMoreButton(false);
     }
   };
+
   return (
     <div
       style={{
@@ -208,6 +242,7 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <Button
+                    onClick={hanlerMin}
                     sx={{
                       backgroundColor: "green",
                       color: "white",
@@ -216,8 +251,9 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
                   >
                     -
                   </Button>
-                  <div style={{ fontFamily: "sans-serif" }}>1</div>
+                  <div style={{ fontFamily: "sans-serif" }}>{amount}</div>
                   <Button
+                    onClick={() => setAmount(amount + 1)}
                     sx={{
                       backgroundColor: "green",
                       color: "white",
@@ -228,6 +264,7 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
                   </Button>
                 </div>
                 <Button
+                  onClick={Buy}
                   sx={{
                     backgroundColor: "green",
                     color: "white",
