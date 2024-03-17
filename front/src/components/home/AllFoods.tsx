@@ -54,7 +54,7 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
   };
 
   // const basketArrey: any = [];
-  const [basketArrey, setBasketArrey] = useState<any>([]);
+  const [basketArrey, setBasketArrey] = useState<BasketArreyType[]>([]);
 
   const handleFoodClick = (event: MouseEvent<HTMLDivElement>) => {
     const foodId = event.currentTarget.id;
@@ -72,7 +72,9 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
       amount: amount,
     });
 
-    setBasketArrey(basketObj);
+    //////////////////////////////////////////////////
+
+    // setBasketArrey(basketObj);
     // basketArrey.push(basketObj);
   };
   console.log(basketObj);
