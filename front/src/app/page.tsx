@@ -5,7 +5,6 @@ import { Option } from "@/components/home/Options";
 import { Sale } from "@/components/home/Sale";
 import { MainFood } from "@/components/home/MainFood";
 import axios from "axios";
-import * as React from "react";
 
 const getAllFoods = async () => {
   try {

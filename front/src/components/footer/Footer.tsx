@@ -6,7 +6,13 @@ import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
+import { Basket } from "@/components/basket/basket";
+import { useContext } from "react";
+import { BasketContext } from "@/components/Provider/basketModalProvider";
+
 export const Footer = () => {
+  const { basketModal, setBasketModal } = useContext(BasketContext);
+
   return (
     <Stack
       sx={{
@@ -16,6 +22,24 @@ export const Footer = () => {
         backgroundImage: "url(/foo.png)",
       }}
     >
+      {basketModal && (
+        <div
+          onClick={() => setBasketModal(false)}
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "fixed",
+            top: "0px",
+            left: "0px",
+            backgroundColor: "black",
+            opacity: "0.5",
+            zIndex: "1",
+          }}
+        ></div>
+      )}
+      <div>
+        <Basket basketModal={basketModal} setBasketModal={setBasketModal} />
+      </div>
       <Stack
         sx={{
           position: "absolute",
