@@ -157,7 +157,7 @@ export const RecoverPass = () => {
         Нууц үг сэргээх
       </Box>
       {stage === 0 && <Email setEmail={setEmail} />}
-      {stage === 1 && <Code setCode={setCode} />}
+      {stage === 1 && <Code setCode={setCode} email={email} />}
       {stage === 2 && (
         <NewPassword
           onchange={(el: ChangeEvent<HTMLInputElement>) => handleChange(el)}
@@ -218,7 +218,7 @@ const Success = () => {
       }}
     >
       <div style={{ marginRight: "5px" }}>✔</div>
-      Мэдээлэл амжилттай хадгалагдлаа
+      Нууц үг амжилттай шинэчлэгдлээ
     </motion.div>
   );
 };

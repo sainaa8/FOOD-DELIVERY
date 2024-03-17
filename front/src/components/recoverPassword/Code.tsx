@@ -12,10 +12,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { PasswordInput } from "./PasswordInput";
 
 type CodeType = {
+  email: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
 };
 export const Code = (props: CodeType) => {
-  const { setCode } = props;
+  const { setCode, email } = props;
 
   return (
     <Stack>
@@ -26,7 +27,8 @@ export const Code = (props: CodeType) => {
           fontFamily: "sans-serif",
         }}
       >
-        Таны example@pinecone.mn хаяг руу сэргээх код илгээх болно.
+        Таны {email && <span style={{ color: "green" }}>"{email}"</span>} хаяг
+        руу сэргээх код илгээх болно.
       </Stack>
 
       <PasswordInput
