@@ -6,7 +6,7 @@ import { Sale } from "@/components/home/Sale";
 import { MainFood } from "@/components/home/MainFood";
 import axios from "axios";
 
-const getAllFoods = async () => {
+export const GetAllFoods = async () => {
   try {
     const { data } = await axios.post<FoodType[]>(
       "http://localhost:8001/foods"
@@ -19,7 +19,7 @@ const getAllFoods = async () => {
 };
 
 export default async function Home() {
-  const data = await getAllFoods();
+  const data = await GetAllFoods();
   console.log(data);
 
   return (
@@ -47,7 +47,7 @@ export default async function Home() {
           {/* <div onClick={handleOpen}>sadfasdf</div> */}
           <Option />
           <Sale />
-          <MainFood data={data} />
+          <MainFood />
         </div>
       </Stack>
     </Stack>

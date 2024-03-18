@@ -17,7 +17,8 @@ export const userUpdatQuery = async (req: Request, res: Response) => {
     }
     const updatedUser = await UserModel.findOneAndUpdate(
       { _id: user._id },
-      { $set: { name: name, email: email, phone: phone } }
+      { $set: { name: name, email: email, phone: phone } },
+      { new: true }
     );
 
     return updatedUser;

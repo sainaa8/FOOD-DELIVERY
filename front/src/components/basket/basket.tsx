@@ -1,5 +1,9 @@
-import { Stack } from "@mui/material";
+"use client";
+import { Stack, Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { OrderMap } from "./OrderMap";
+
 type ModalType = {
   basketModal: boolean;
   setBasketModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,6 +11,7 @@ type ModalType = {
 
 export const Basket = (props: ModalType) => {
   const { basketModal, setBasketModal } = props;
+
   return (
     <Stack>
       <AnimatePresence>
@@ -28,14 +33,75 @@ const BasketModal = () => {
       style={{
         position: "fixed",
         backgroundColor: "white",
-        width: "500px",
+        width: "586px",
         height: "100vh",
         zIndex: "2",
         top: "0px",
         right: "0px",
+
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}
     >
-      asdasdasd{" "}
+      <Stack
+        direction="row"
+        sx={{
+          margin: "30px",
+          padding: "30px 0px",
+          borderBottom: "1px solid black",
+        }}
+      >
+        <ArrowBackIosIcon />
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "20px",
+            fontWeight: "bold",
+            marginLeft: "150px",
+            fontFamily: "sans-serif",
+          }}
+        >
+          Таны сагс
+        </div>
+      </Stack>
+
+      <Stack sx={{ height: "100%", overflowY: "scroll", margin: "10px 30px" }}>
+        <OrderMap />
+      </Stack>
+
+      <Stack
+        direction="row"
+        sx={{
+          marginBottom: "4px",
+          width: "100%",
+          padding: "40px 0px",
+          justifyContent: "space-around",
+          alignItems: "center",
+          display: "flex",
+          boxShadow:
+            "rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "sans-serif",
+            fontSize: "20px",
+          }}
+        >
+          <div>Нийт төлөх дүн</div>
+          <div style={{ fontWeight: "bold" }}>34,800₮</div>
+        </div>
+        <Button
+          sx={{
+            backgroundColor: "green",
+            color: "white",
+            padding: "10px 40px",
+          }}
+        >
+          Захиалга хийх
+        </Button>
+      </Stack>
     </motion.div>
   );
 };

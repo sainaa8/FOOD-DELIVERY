@@ -10,35 +10,40 @@ export type UsermodelType = {
   number?: String;
 };
 
-const UserSchema = new Schema<UsermodelType>({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  isUser: {
-    type: Boolean,
-    default: false,
-    required: false,
-  },
+const UserSchema = new Schema<UsermodelType>(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    isUser: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
 
-  number: {
-    type: String,
-    default: 0,
-    required: true,
+    number: {
+      type: String,
+      default: 0,
+      required: true,
+    },
   },
-});
+  {
+    timestamps: true,
+  }
+);
 
 UserSchema.index({ email: 1 }, { unique: true });
 

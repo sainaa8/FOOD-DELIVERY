@@ -26,7 +26,6 @@ type Sda = {
 };
 export const SearchMap = (props: Sda) => {
   const { data } = props;
-  console.log(data);
 
   const [foundFood, setFoundFood] = useState<FoodType | null>(null);
   const [open, setOpenModal] = useState<boolean>(false);

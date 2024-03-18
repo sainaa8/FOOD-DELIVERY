@@ -3,15 +3,17 @@ import axios from "axios";
 
 import { AllFoods } from "./AllFoods";
 import Image from "next/image";
-
+import { GetAllFoods } from "@/app/page";
+import { get } from "http";
 //////////////////////server side
 type ddda = {
   data: FoodType[];
 };
 
-export const MainFood = (props: ddda) => {
-  const { data } = props;
-  console.log(data);
+export const MainFood = async () => {
+  // const { data } = props;
+  const data = await GetAllFoods();
+  console.log(data, "hoolnuud");
   return (
     <Stack
       sx={{

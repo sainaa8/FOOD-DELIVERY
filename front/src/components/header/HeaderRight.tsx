@@ -3,7 +3,7 @@ import * as React from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
-import { AnimatePresence, motion } from "framer-motion";
+// import { AnimatePresence, motion } from "framer-motion";
 import IconButton from "@mui/material/IconButton";
 import { Search } from "@mui/icons-material";
 import { Grid, Stack } from "@mui/material";

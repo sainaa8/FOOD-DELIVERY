@@ -43,7 +43,7 @@ const getFilterFoods = async () => {
 };
 
 export default async function Search() {
-  const data = await getFilterFoods();
+  const data: FoodType[] | undefined = await getFilterFoods();
   console.log(data);
 
   return (

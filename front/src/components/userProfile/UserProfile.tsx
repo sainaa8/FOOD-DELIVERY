@@ -31,6 +31,14 @@ export const UserProfile = () => {
   const [error, setError] = useState("");
   const [edit, setEdit] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [datas, setData] = useState({
+    _id: "",
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    isAdmin: "",
+  });
 
   type UserUpType = {
     id: string;
@@ -73,7 +81,7 @@ export const UserProfile = () => {
         "http://localhost:8001/userup",
         userUpdate
       );
-      console.log(data);
+      setData(data);
       setEdit(false);
       setSuccess(true);
       // console.log(userUpdate);
@@ -86,6 +94,7 @@ export const UserProfile = () => {
       setSuccess(false);
     }, 2000);
   };
+  console.log(datas);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
