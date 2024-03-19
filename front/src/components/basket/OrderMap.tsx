@@ -1,87 +1,27 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
-import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
-import AddIcon from "@mui/icons-material/Add";
-import { Button } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+
 import { MouseEvent } from "react";
 
-type OrderDiteal = {
-  price: string | number;
-  image: string;
-  name: string;
-  amount: number | string;
-  ingredients: string[];
-};
-export const ModelForMap = (props: OrderDiteal) => {
-  const { price, image, name, amount, ingredients } = props;
+import { ModelForMap } from "./ModelForMap";
 
-  return (
-    <div style={{ display: "flex", gap: "10px" }}>
-      <div>
-        <Image alt="" src={image} width={240} height={150} />
-      </div>
-      <div
-        style={{
-          width: "250px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "5px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            fontFamily: "sans-serif",
-          }}
-        >
-          <div>
-            <div>{name}</div>
-            <div style={{ color: "green" }}>{price}$</div>
-          </div>
-          <div>
-            <ClearOutlinedIcon />
-          </div>
-        </div>
-        <div style={{ color: "grey" }}>{ingredients}</div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Button
-            style={{
-              padding: "6px 6px",
-              backgroundColor: "green",
-              color: "white",
-            }}
-          >
-            <RemoveOutlinedIcon />
-          </Button>
-          <div>{amount}</div>
-          <Button
-            style={{
-              padding: "6px 0px",
-              backgroundColor: "green",
-              color: "white",
-            }}
-          >
-            <AddIcon />
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
+type OrderMapTuype = {
+  setInTotal: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const OrderMap = () => {
+export const OrderMap = (props: OrderMapTuype) => {
+  const { setInTotal } = props;
+
+  const [localData, setLocalData] = useState([]);
+  const [tempTotal, setTempTotla] = useState([]);
+  console.log(tempTotal);
+
   const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
   console.log(itemsInBasket);
+
+  useEffect(() => {
+    setLocalData(itemsInBasket);
+  }, [] || [itemsInBasket]);
 
   const deleteItem = (event: MouseEvent<HTMLDivElement>) => {
     const foodId = event.currentTarget.id;
@@ -91,15 +31,37 @@ export const OrderMap = () => {
       (el: any) => el.foodId._id !== foodId
     );
     localStorage.setItem("items", JSON.stringify(newItems));
+    setLocalData(newItems);
+  };
+
+  const addButton = (index: number) => {
+    const newObj: any = [...localData];
+    newObj[index].amount = newObj[index].amount + 1;
+    setLocalData(newObj);
+    localStorage.setItem("items", JSON.stringify(newObj));
+  };
+
+  const minusButton = (index: number) => {
+    const newObj: any = [...localData];
+    if (newObj[index].amount > 1) {
+      newObj[index].amount = newObj[index].amount - 1;
+      setLocalData(newObj);
+      localStorage.setItem("items", JSON.stringify(newObj));
+    }
   };
 
   return (
     <div style={{ display: "flex", gap: "10px", flexDirection: "column" }}>
       {itemsInBasket &&
-        itemsInBasket?.map((el: any, index: number) => {
+        localData?.map((el: any, index: number) => {
           return (
-            <div key={index} onClick={deleteItem} id={el.foodId._id}>
+            <div key={index}>
               <ModelForMap
+                setTempTotla={setTempTotla}
+                minusButton={() => minusButton(index)}
+                addButton={() => addButton(index)}
+                deleteItem={deleteItem}
+                id={el.foodId._id}
                 price={el.foodId.price}
                 image={el.foodId.image}
                 name={el.foodId.name}

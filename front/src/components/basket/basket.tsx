@@ -1,9 +1,10 @@
 "use client";
+import React from "react";
 import { Stack, Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { OrderMap } from "./OrderMap";
-
+import { useState } from "react";
 type ModalType = {
   basketModal: boolean;
   setBasketModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,6 +26,9 @@ export const Basket = (props: ModalType) => {
   );
 };
 const BasketModal = () => {
+  const [inTotal, setInTotal] = useState(0);
+  console.log(inTotal, "logdchoochdee");
+
   return (
     <motion.div
       initial={{ x: "100%" }}
@@ -67,7 +71,7 @@ const BasketModal = () => {
       </Stack>
 
       <Stack sx={{ height: "100%", overflowY: "scroll", margin: "10px 30px" }}>
-        <OrderMap />
+        <OrderMap setInTotal={setInTotal} />
       </Stack>
 
       <Stack

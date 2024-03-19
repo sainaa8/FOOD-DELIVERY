@@ -4,6 +4,8 @@ export type CategoryModelType = {
   _id: Schema.Types.ObjectId;
   name: string;
   foodId: Schema.Types.ObjectId[];
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 const CategorySchema = new Schema<CategoryModelType>({
@@ -13,7 +15,16 @@ const CategorySchema = new Schema<CategoryModelType>({
   },
   foodId: {
     type: [Schema.Types.ObjectId],
+    ref: "Foods",
     required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
+  updatedAt: {
+    type: Date,
+    default: new Date(),
   },
 });
 

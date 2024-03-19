@@ -1,7 +1,7 @@
 import { connectDB } from "./db/database";
 import express, { type Application } from "express";
 import cors from "cors";
-import { router, FoodRouter } from "./routes";
+import { router, FoodRouter, CategoryRouter } from "./routes";
 
 import dotenv from "dotenv";
 
@@ -12,8 +12,13 @@ const app: Application = express();
 
 app.use(express.json());
 app.use(cors());
+
 app.use(router);
 app.use(FoodRouter);
+app.use(CategoryRouter);
+
+// Define the port to run the server on)
+
 const port = process.env.PORT;
 
 app.listen(port, () => {

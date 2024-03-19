@@ -89,3 +89,36 @@ export const GetFoodsController = async (req: Request, res: Response) => {
     res.send(err.message);
   }
 };
+import { createCatigory } from "../../queries/category/create-catigory-query";
+export const createCategoryController = async (req: Request, res: Response) => {
+  try {
+    const result = await createCatigory(req);
+    res.status(200).send(result);
+  } catch (err: any) {
+    res.status(400).send(err.message);
+  }
+};
+
+import { getCatigoryQuery } from "../../queries/category/get-catigory-query";
+import { getCatigoriesQuery } from "../../queries/category/get-categories-query";
+
+export const getCatiController = async (req: Request, res: Response) => {
+  try {
+    const result = await getCatigoryQuery(req);
+    res.status(200).send(result);
+  } catch (err: any) {
+    res.status(400).send(err.message);
+  }
+};
+
+export const getCatigoriesController = async (
+  request: Request,
+  res: Response
+) => {
+  try {
+    const result = await getCatigoriesQuery();
+    res.status(200).send(result);
+  } catch (err: any) {
+    res.status(400).send(err.message);
+  }
+};
