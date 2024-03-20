@@ -1,7 +1,11 @@
 import React from "react";
-
+import { ConditionOfService } from "@/components/uilchilgeeniNohtsol/UilchilgeeniNohtsol";
 function page() {
-  return <div>uilvhilheenii nohtsol</div>;
+  return (
+    <div>
+      <ConditionOfService />
+    </div>
+  );
 }
 
 export default page;

@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { MouseEvent } from "react";
 
 import { ModelForMap } from "./ModelForMap";
-
+//import { useEffect } from "react";
 type OrderMapTuype = {
   setInTotal: React.Dispatch<React.SetStateAction<number>>;
 };
@@ -14,19 +14,28 @@ export const OrderMap = (props: OrderMapTuype) => {
 
   const [localData, setLocalData] = useState([]);
   const [tempTotal, setTempTotla] = useState([]);
-  console.log(tempTotal);
+
+  // console.log(tempTotal);
 
   const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
-  console.log(itemsInBasket);
+  // console.log(itemsInBasket);
 
   useEffect(() => {
     setLocalData(itemsInBasket);
-  }, [] || [itemsInBasket]);
+
+    let price = 0;
+    itemsInBasket.map((item: any, index: number) => {
+      const num = Number(item.foodId.price) * Number(item.amount);
+      price = price + num;
+    });
+    // console.log("une", price);
+    setInTotal(price);
+  }, [] || [localData]);
 
   const deleteItem = (event: MouseEvent<HTMLDivElement>) => {
     const foodId = event.currentTarget.id;
 
-    console.log(foodId);
+    // console.log(foodId);
     const newItems = itemsInBasket.filter(
       (el: any) => el.foodId._id !== foodId
     );
@@ -50,6 +59,7 @@ export const OrderMap = (props: OrderMapTuype) => {
     }
   };
 
+  // useEffect(() => {}, [] || [addButton] || [minusButton]);
   return (
     <div style={{ display: "flex", gap: "10px", flexDirection: "column" }}>
       {itemsInBasket &&

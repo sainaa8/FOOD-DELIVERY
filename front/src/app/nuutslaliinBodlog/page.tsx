@@ -1,7 +1,11 @@
 import React from "react";
-
+import { NuutslaliinBodlogo } from "@/components/uilchilgeeniNohtsol/NuutslaliinBodlog";
 function page() {
-  return <div>nuutslaliin bodlogo</div>;
+  return (
+    <div>
+      <NuutslaliinBodlogo />
+    </div>
+  );
 }
 
 export default page;

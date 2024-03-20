@@ -75,6 +75,7 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
 
   const Buy = () => {
     setBasket((prev) => {
+      // if(id n ijil esehijg shlgaj ijjil bol only amountiign nemn pushlen yaj gedgiin medku bn ghdeel tegh bha)
       localStorage.setItem(
         "items",
         JSON.stringify([...itemsInBasket, basketObj])
