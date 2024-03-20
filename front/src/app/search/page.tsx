@@ -68,7 +68,7 @@ export default async function Search() {
         >
           Хайлт
         </div>
-        <SearchMap data={data} />
+        <SearchMap data={data as FoodType[]} />
       </div>
     </Stack>
   );

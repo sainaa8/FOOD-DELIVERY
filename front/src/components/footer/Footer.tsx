@@ -5,13 +5,15 @@ import { Stack, Box } from "@mui/material";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
-
+import { useRouter } from "next/navigation";
 import { Basket } from "@/components/basket/basket";
 import { useContext } from "react";
 import { BasketContext } from "@/components/Provider/basketModalProvider";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const { basketModal, setBasketModal } = useContext(BasketContext);
+  const { push } = useRouter();
 
   return (
     <Stack
@@ -89,12 +91,47 @@ export const Footer = () => {
               fontFamily: "sans-serif",
             }}
           >
-            <Box sx={{ textDecoration: "underline" }}>Нүүр </Box>
-            <Box sx={{ textDecoration: "underline" }}>Холбоо барих</Box>
-            <Box sx={{ textDecoration: "underline" }}>Хоолны цэс</Box>
-            <Box sx={{ textDecoration: "underline" }}>Үйлчилгээний нөхцөл</Box>
-            <Box sx={{ textDecoration: "underline" }}>Хүргэлтийн бүс</Box>
-            <Box sx={{ textDecoration: "underline" }}>Нууцлалын бодлого</Box>
+            <Box onClick={() => push("/")} sx={{ cursor: "pointer" }}>
+              <div style={{ textDecoration: "underline" }}>Нүүр</div>
+            </Box>
+
+            <Box
+              onClick={() =>
+                push("https://www.youtube.com/watch?v=AZyR9QymVoo")
+              }
+              sx={{ cursor: "pointer" }}
+            >
+              <div style={{ textDecoration: "underline" }}> Холбоо барих</div>
+            </Box>
+
+            <Box onClick={() => push("/menu")} sx={{ cursor: "pointer" }}>
+              <div style={{ textDecoration: "underline" }}>Хоолны цэс</div>
+            </Box>
+
+            <Box
+              onClick={() => push("/uilchilgeeniiNohtsol")}
+              sx={{ cursor: "pointer" }}
+            >
+              <div style={{ textDecoration: "underline" }}>
+                Үйлчилгээний нөхцөл
+              </div>
+            </Box>
+
+            <Box
+              onClick={() => push("hurgeltiinBus")}
+              sx={{ cursor: "pointer" }}
+            >
+              <div style={{ textDecoration: "underline" }}>Хүргэлтийн бүс</div>
+            </Box>
+
+            <Box
+              onClick={() => push("/nuutslaliinBodlog")}
+              sx={{ cursor: "pointer" }}
+            >
+              <div style={{ textDecoration: "underline" }}>
+                Нууцлалын бодлого
+              </div>
+            </Box>
           </Box>
           <Box
             sx={{
@@ -103,9 +140,23 @@ export const Footer = () => {
               flexDirection: "row",
             }}
           >
-            <FacebookOutlinedIcon sx={{ color: "white", fontSize: "40px" }} />
-            <InstagramIcon sx={{ color: "white", fontSize: "40px" }} />
-            <TwitterIcon sx={{ color: "white", fontSize: "40px" }} />
+            <div onClick={() => push("https://www.facebook.com/login/")}>
+              <FacebookOutlinedIcon
+                sx={{ color: "white", fontSize: "40px", cursor: "pointer" }}
+              />
+            </div>
+            <div
+              onClick={() => push("https://www.instagram.com/accounts/login/")}
+            >
+              <InstagramIcon
+                sx={{ color: "white", fontSize: "40px", cursor: "pointer" }}
+              />
+            </div>
+            <div onClick={() => push("https://twitter.com/i/flow/login")}>
+              <TwitterIcon
+                sx={{ color: "white", fontSize: "40px", cursor: "pointer" }}
+              />
+            </div>
           </Box>
         </Stack>
         <Stack

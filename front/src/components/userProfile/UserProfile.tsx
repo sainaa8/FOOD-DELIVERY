@@ -40,18 +40,24 @@ export const UserProfile = () => {
     isAdmin: "",
   });
 
-  type UserUpType = {
-    id: string;
-    name: string;
-    email: string;
-    phone: string;
-  };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [userUpdate, setUserUpdate] = useState<UserUpType>({
     id: "",
     name: "",
     email: "",
     phone: "",
   });
+
+  type UserUpType = {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+  };
+
   ///////gertee hiinee
   useEffect(() => {
     setUserUpdate({
@@ -61,13 +67,11 @@ export const UserProfile = () => {
       name: userData.name,
       phone: userData.phone,
     });
-  }, [edit]);
+  }, [] || [edit]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // setUserUpdate({ ...userUpdate, id: userData._id });
     const { name, value } = e.target;
     setUserUpdate({ ...userUpdate, [name]: value });
-    // console.log(userUpdate);
   };
   const handleClick = async () => {
     setError(" ");
@@ -96,10 +100,6 @@ export const UserProfile = () => {
   };
   console.log(datas);
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   const exit = () => {
     localStorage.removeItem("Token");
     window.location.href = "/";
@@ -122,7 +122,7 @@ export const UserProfile = () => {
       <Stack sx={{ alignItems: "center", gap: "30px" }}>
         <Image alt="" src="/Photo.png" width={100} height={100} />
         <Stack sx={{ fontFamily: "sans-serif", fontSize: "30px" }}>
-          {userData.name}
+          {userUpdate.name}
         </Stack>
       </Stack>
 
@@ -130,7 +130,7 @@ export const UserProfile = () => {
         <CustomizedInputBase
           name="name"
           title="Таны нэр"
-          value={userData.name}
+          value={userUpdate.name}
           setEdit={setEdit}
           edit={edit}
           onchange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
@@ -138,7 +138,7 @@ export const UserProfile = () => {
         <CustomizedInputBase
           name="phone"
           title="Утасны дугаар"
-          value={userData.phone}
+          value={userUpdate.phone}
           setEdit={setEdit}
           edit={edit}
           onchange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
@@ -146,7 +146,7 @@ export const UserProfile = () => {
         <CustomizedInputBase
           name="email"
           title="Имэйл хаяг"
-          value={userData.email}
+          value={userUpdate.email}
           setEdit={setEdit}
           edit={edit}
           onchange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}

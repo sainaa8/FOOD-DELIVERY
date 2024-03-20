@@ -4,7 +4,8 @@ import Image from "next/image";
 import { MouseEvent, useState } from "react";
 import { Options } from "../home/OneModel";
 import { Modal, Button } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
+
+import { FoodDiteal } from "../FoodDiteal";
 // import  from "@mui/material";
 
 const style = {
@@ -24,24 +25,59 @@ const style = {
 type Sda = {
   data: FoodType[];
 };
+type Basket = {
+  foodId: object;
+  amount: number;
+};
+
 export const SearchMap = (props: Sda) => {
   const { data } = props;
 
   const [foundFood, setFoundFood] = useState<FoodType | null>(null);
   const [open, setOpenModal] = useState<boolean>(false);
-  const handleClose = () => setOpenModal(false);
 
+  const [basket, setBasket] = useState<Basket[]>([]);
+  const [basketObj, setBasketObj] = useState<{
+    foodId: object;
+    amount: number;
+  }>({
+    foodId: {},
+    amount: 0,
+  });
+
+  const handleClose = () => setOpenModal(false);
   const handleModalClick = () => setOpenModal(!open);
+
+  const hanlerMin = () => {
+    if (basketObj.amount > 1) {
+      setBasketObj({ ...basketObj, amount: basketObj.amount - 1 });
+    }
+  };
+  const handlerPlus = () => {
+    setBasketObj({ ...basketObj, amount: basketObj.amount + 1 });
+  };
 
   const handleFoodClick = (event: MouseEvent<HTMLDivElement>) => {
     const foodId = event.currentTarget.id;
-    console.log(foodId);
+
     const filteredFood = data.find((el) => el._id === foodId);
+    setBasketObj({ ...basketObj, foodId: filteredFood as FoodType });
     setFoundFood(filteredFood as FoodType);
     handleModalClick();
   };
-
   console.log(foundFood);
+
+  const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
+  const Buy = () => {
+    setBasket((prev) => {
+      localStorage.setItem(
+        "items",
+        JSON.stringify([...itemsInBasket, basketObj])
+      );
+      return [...prev, basketObj];
+    });
+    handleClose();
+  };
 
   return (
     <Stack>
@@ -99,109 +135,14 @@ export const SearchMap = (props: Sda) => {
 
       <Modal open={open} onClose={handleClose}>
         <div style={style}>
-          <Stack direction="row" sx={{ padding: "10px" }}>
-            <div
-              style={{ width: "505px", height: "382px", position: "relative" }}
-            >
-              {foundFood?.image && (
-                <Image
-                  src={foundFood?.image}
-                  alt=""
-                  layout="fill"
-                  style={{ borderRadius: "6px" }}
-                />
-              )}
-            </div>
-            <Stack sx={{ gap: "20px", paddingLeft: "30px" }}>
-              <div
-                style={{
-                  width: "370px",
-                  display: "flex",
-                  justifyContent: "end",
-                  paddingRight: "20px",
-                }}
-              >
-                <div onClick={handleClose}>
-                  <ClearIcon />
-                </div>
-              </div>
-              <Stack sx={{}}>
-                <div
-                  style={{
-                    fontSize: "29px",
-                    fontFamily: "sans-serif",
-                    fontWeight: "700px",
-                  }}
-                >
-                  {foundFood?.name}
-                </div>
-                <div
-                  style={{
-                    fontSize: "29px",
-                    fontFamily: "sans-serif",
-
-                    color: "green",
-                  }}
-                >
-                  {foundFood?.price} ₮
-                </div>
-              </Stack>
-              <Stack>
-                <div style={{ fontSize: "20px", fontFamily: "sans-serif" }}>
-                  Орц
-                </div>
-                <div
-                  style={{
-                    width: "86%",
-                    backgroundColor: "#F6F6F6",
-                    padding: "5px 5px",
-                    borderRadius: "6px",
-                    marginTop: "7px",
-                    fontFamily: "sans-serif",
-                    fontSize: "12px",
-                    color: "grey",
-                  }}
-                >
-                  {foundFood?.ingredients}
-                </div>
-              </Stack>
-              <Stack sx={{ gap: "10px" }}>
-                <div style={{ fontFamily: "sans-serif" }}>Тоо</div>
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <Button
-                    sx={{
-                      backgroundColor: "green",
-                      color: "white",
-                      borderRadius: "6px",
-                    }}
-                  >
-                    -
-                  </Button>
-                  <div style={{ fontFamily: "sans-serif" }}>1</div>
-                  <Button
-                    sx={{
-                      backgroundColor: "green",
-                      color: "white",
-                      borderRadius: "6px",
-                    }}
-                  >
-                    +
-                  </Button>
-                </div>
-                <Button
-                  sx={{
-                    backgroundColor: "green",
-                    color: "white",
-                    borderRadius: "4px",
-                  }}
-                >
-                  Сагслах
-                </Button>
-              </Stack>
-            </Stack>
-          </Stack>
+          <FoodDiteal
+            foundFood={foundFood as FoodType}
+            basketObj={basketObj}
+            handleClose={handleClose}
+            Buy={Buy}
+            hanlerMin={hanlerMin}
+            handlerPlus={handlerPlus}
+          />
         </div>
       </Modal>
     </Stack>

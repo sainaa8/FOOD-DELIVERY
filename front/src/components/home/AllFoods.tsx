@@ -1,10 +1,10 @@
 "use client";
+import React from "react";
 
 import { MouseEvent, useEffect, useState } from "react";
 import { Options } from "./OneModel";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Button from "@mui/material/Button";
-import React from "react";
+
 import { Stack, Box } from "@mui/material";
 import Image from "next/image";
 import { FoodDiteal } from "../FoodDiteal";
@@ -82,8 +82,6 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
       return [...prev, basketObj];
     });
     handleClose();
-
-    // localStorage.setItem("item", JSON.stringify(basket));
   };
 
   const handlerMore = () => {
@@ -96,7 +94,7 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
     }
   };
 
-  console.log(basket);
+  // console.log(basket);
 
   return (
     <div
@@ -151,7 +149,7 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
           }}
           onClick={handlerMore}
         >
-          {moreButton ? "Бүгдийг харах" : " Хураах"}
+          {moreButton ? " Хураах" : "Бүгдийг харах"}
 
           <ArrowForwardIosIcon />
         </Box>

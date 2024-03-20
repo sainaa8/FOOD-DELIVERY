@@ -59,13 +59,12 @@ export const HeaderRight = () => {
           variant="outlined"
           component="form"
           sx={{
-            p: "2px 4px",
+            p: "0px 4px",
             display: "flex",
             alignItems: "center",
             width: 300,
             borderRadius: "8px",
             borderColor: "black",
-            marginTop: "20px",
           }}
         >
           <IconButton

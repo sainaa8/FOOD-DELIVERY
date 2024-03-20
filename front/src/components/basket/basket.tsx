@@ -4,7 +4,8 @@ import { Stack, Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { OrderMap } from "./OrderMap";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { BasketContext } from "../Provider/basketModalProvider";
 type ModalType = {
   basketModal: boolean;
   setBasketModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,6 +27,7 @@ export const Basket = (props: ModalType) => {
   );
 };
 const BasketModal = () => {
+  const { basketModal, setBasketModal } = useContext(BasketContext);
   const [inTotal, setInTotal] = useState(0);
   console.log(inTotal, "logdchoochdee");
 
@@ -56,7 +58,13 @@ const BasketModal = () => {
           borderBottom: "1px solid black",
         }}
       >
-        <ArrowBackIosIcon />
+        <div
+          onClick={() => setBasketModal(false)}
+          style={{ cursor: "pointer" }}
+        >
+          <ArrowBackIosIcon />
+        </div>
+
         <div
           style={{
             textAlign: "center",

@@ -20,7 +20,13 @@ export const Options = (props: PropsType) => {
         "&:active": { transform: "scale(0.9)" },
       }}
     >
-      <Image alt="" src={zurag} width={282} height={186} />
+      <Image
+        alt=""
+        src={zurag}
+        width={282}
+        height={186}
+        style={{ borderRadius: "10px" }}
+      />
       <Stack sx={{ marginLeft: "20px" }}>
         <Stack
           sx={{
