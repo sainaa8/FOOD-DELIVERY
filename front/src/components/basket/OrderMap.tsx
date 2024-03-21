@@ -67,7 +67,7 @@ export const OrderMap = (props: OrderMapTuype) => {
     });
     setInTotal(price);
 
-    //
+    ////gertee ochood martchiwaa odoo hudaldan awah button darahaad is loggid inee shalgaad ai sda min untkushde
 
     setOrderFood(
       localData?.map((el: any, index: number) => {
@@ -76,8 +76,7 @@ export const OrderMap = (props: OrderMapTuype) => {
       })
     );
 
-    // setOrderFood([...orderFood, el.foodId]);
-    //
+  
   }, [localData]);
 
   console.log(localData, "hii");
