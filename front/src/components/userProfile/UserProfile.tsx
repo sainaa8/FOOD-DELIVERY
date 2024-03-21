@@ -10,7 +10,7 @@ import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import { useContext, useState, useEffect } from "react";
 import { CheckTokenContext } from "../ckeckToken/CheckToken";
 import axios from "axios";
-
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
@@ -27,7 +27,7 @@ const style = {
 };
 
 export const UserProfile = () => {
-  const { userData, isLoggedIn } = useContext(CheckTokenContext);
+  const { userData, isLoggedIn, isAdmin } = useContext(CheckTokenContext);
   const [error, setError] = useState("");
   const [edit, setEdit] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -57,6 +57,8 @@ export const UserProfile = () => {
     email: string;
     phone: string;
   };
+
+  console.log(isAdmin, "propage");
 
   ///////gertee hiinee
   useEffect(() => {
@@ -161,6 +163,7 @@ export const UserProfile = () => {
                 alignItems: "center",
                 gap: "10px",
                 marginLeft: "20px",
+                borderRadius: "50%",
               }}
             >
               <div
@@ -196,6 +199,31 @@ export const UserProfile = () => {
               </div>
               Гарах
             </div>
+            {isAdmin && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  marginLeft: "20px",
+                  borderRadius: "50%",
+                }}
+              >
+                <div
+                  style={{
+                    padding: "7px 9px",
+                    border: "1px solid black",
+                    borderRadius: "50%",
+                    cursor: "pointer",
+                    backgroundColor: "green",
+                    color: "white",
+                  }}
+                >
+                  <AdminPanelSettingsIcon />
+                </div>
+                Админ
+              </div>
+            )}
           </div>
         ) : (
           <>

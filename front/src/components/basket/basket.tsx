@@ -6,6 +6,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { OrderMap } from "./OrderMap";
 import { useState, useContext } from "react";
 import { BasketContext } from "../Provider/basketModalProvider";
+import { CheckTokenContext } from "../ckeckToken/CheckToken";
 type ModalType = {
   basketModal: boolean;
   setBasketModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,9 +28,14 @@ export const Basket = (props: ModalType) => {
   );
 };
 const BasketModal = () => {
+  const { userData, isLoggedIn, isAdmin } = useContext(CheckTokenContext);
   const { basketModal, setBasketModal } = useContext(BasketContext);
   const [inTotal, setInTotal] = useState(0);
-  console.log(inTotal, "logdchoochdee");
+  // console.log(userData, isLoggedIn, );
+
+  const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
+
+  console.log(itemsInBasket, "itemsInBasket");
 
   return (
     <motion.div
@@ -102,7 +108,9 @@ const BasketModal = () => {
           }}
         >
           <div>Нийт төлөх дүн</div>
-          <div style={{ fontWeight: "bold" }}>34,800₮</div>
+          <div style={{ fontWeight: "bold" }}>
+            {Number(inTotal).toLocaleString()}₮
+          </div>
         </div>
         <Button
           sx={{

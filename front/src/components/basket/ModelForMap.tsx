@@ -35,17 +35,17 @@ export const ModelForMap = (props: OrderDiteal) => {
   } = props;
 
   const [test, setTest] = useState<any>([]);
+
   //   console.log(test);
 
   //   console.log(Number(price) * Number(amount));
-//   let urjwer = Number(price) * Number(amount);
-//   console.log(urjwer);
+  //   let urjwer = Number(price) * Number(amount);
+  //   console.log(urjwer);
 
-//   useEffect(() => {
-  
+  //   useEffect(() => {
 
-//     setTempTotla(urjwer);
-//   }, [price, amount]);
+  //     setTempTotla(urjwer);
+  //   }, [price, amount]);
 
   return (
     <div style={{ display: "flex", gap: "10px" }}>
@@ -70,7 +70,9 @@ export const ModelForMap = (props: OrderDiteal) => {
         >
           <div>
             <div>{name}</div>
-            <div style={{ color: "green" }}>{price}$</div>
+            <div style={{ color: "green" }}>
+              {Number(price).toLocaleString()}₮
+            </div>
           </div>
           <div onClick={deleteItem} id={id} style={{ cursor: "pointer" }}>
             <ClearOutlinedIcon />

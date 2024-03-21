@@ -28,8 +28,16 @@ type AllFoodsProps = {
   foods: FoodType[];
 };
 
+type ObjType = {
+  _id: string;
+  name: string;
+  image: string;
+  ingredients: string;
+  price: string;
+};
+
 type Basket = {
-  foodId: object;
+  foodId: FoodType;
   amount: number;
 };
 
@@ -40,14 +48,19 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
   const [moreButton, setMoreButton] = useState(false);
 
   const [open, setOpenModal] = useState<boolean>(false);
-  const [basket, setBasket] = useState<Basket[]>([]);
+  const [basket, setBasket] = useState<Basket[]>([
+    {
+      foodId: { _id: "", name: "", image: "", ingredients: "", price: "" },
+      amount: 1,
+    },
+  ]);
 
   const [basketObj, setBasketObj] = useState<{
-    foodId: object;
+    foodId: FoodType;
     amount: number;
   }>({
-    foodId: {},
-    amount: 0,
+    foodId: { _id: "", image: "", ingredients: "", name: "", price: "" },
+    amount: 1,
   });
 
   const handleClose = () => setOpenModal(false);
@@ -66,23 +79,38 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
     const foodId = event.currentTarget.id;
 
     const filteredFood = foods.find(({ _id }) => _id === foodId);
+
     setBasketObj({ ...basketObj, foodId: filteredFood as FoodType });
     setFoundFood(filteredFood as FoodType);
     handleModalClick();
   };
 
-  const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
+  const itemsInBasket: Basket[] = JSON.parse(
+    localStorage.getItem("items") || "[]"
+  );
 
   const Buy = () => {
-    setBasket((prev) => {
-      // if(id n ijil esehijg shlgaj ijjil bol only amountiign nemn pushlen yaj gedgiin medku bn ghdeel tegh bha)
+    console.log(basketObj);
+
+    const filtered = itemsInBasket?.find(
+      (el) => el.foodId._id === basketObj.foodId._id
+    );
+
+    if (filtered) {
+      filtered.amount = filtered.amount + basketObj.amount;
+
+      localStorage.setItem("items", JSON.stringify([...itemsInBasket]));
+    } else {
       localStorage.setItem(
         "items",
         JSON.stringify([...itemsInBasket, basketObj])
       );
-      return [...prev, basketObj];
-    });
+    }
+
+    console.log(filtered);
+
     handleClose();
+    setBasketObj({ ...basketObj, amount: 1 });
   };
 
   const handlerMore = () => {

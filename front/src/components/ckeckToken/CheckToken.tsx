@@ -16,6 +16,7 @@ type UserData = {
 type DataContextType = {
   isLoggedIn: boolean;
   userData: UserData;
+  isAdmin: boolean;
 };
 
 export const CheckTokenContext = createContext<DataContextType>(
@@ -23,6 +24,9 @@ export const CheckTokenContext = createContext<DataContextType>(
 );
 export const CheckTokenProvider = ({ children }: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  console.log(isAdmin, "ssds");
+
   const [userData, setUserData] = useState({
     _id: "",
     name: "",
@@ -48,7 +52,12 @@ export const CheckTokenProvider = ({ children }: any) => {
               },
             }
           );
-          console.log(data);
+          console.log(data.isUser, "data");
+          if (data.isUser == true) {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
 
           if (data == "provided token is not valid") {
             setIsLoggedIn(false);
@@ -70,7 +79,7 @@ export const CheckTokenProvider = ({ children }: any) => {
   // console.log(isLoggedIn);
 
   return (
-    <CheckTokenContext.Provider value={{ userData, isLoggedIn }}>
+    <CheckTokenContext.Provider value={{ userData, isLoggedIn, isAdmin }}>
       {children}
     </CheckTokenContext.Provider>
   );

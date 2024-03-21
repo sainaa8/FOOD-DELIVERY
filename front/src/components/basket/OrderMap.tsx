@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-
+import { OrderFoodContext } from "../Provider/orderFoodProvider";
 import { MouseEvent } from "react";
 
 import { ModelForMap } from "./ModelForMap";
@@ -9,8 +9,17 @@ type OrderMapTuype = {
   setInTotal: React.Dispatch<React.SetStateAction<number>>;
 };
 
+/* 
+hoolni object 
+dotroo id image price title
+backruugaa yavuulahdaa ter object dotor ni amount aa oruulaad yavuulchihna
+
+*/
+
 export const OrderMap = (props: OrderMapTuype) => {
   const { setInTotal } = props;
+  const { orderFood, setOrderFood } = useContext(OrderFoodContext);
+  console.log(orderFood, "orderFood");
 
   const [localData, setLocalData] = useState([]);
   const [tempTotal, setTempTotla] = useState([]);
@@ -18,19 +27,10 @@ export const OrderMap = (props: OrderMapTuype) => {
   // console.log(tempTotal);
 
   const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
-  // console.log(itemsInBasket);
 
   useEffect(() => {
     setLocalData(itemsInBasket);
-
-    let price = 0;
-    itemsInBasket.map((item: any, index: number) => {
-      const num = Number(item.foodId.price) * Number(item.amount);
-      price = price + num;
-    });
-    // console.log("une", price);
-    setInTotal(price);
-  }, [] || [localData]);
+  }, []);
 
   const deleteItem = (event: MouseEvent<HTMLDivElement>) => {
     const foodId = event.currentTarget.id;
@@ -59,7 +59,29 @@ export const OrderMap = (props: OrderMapTuype) => {
     }
   };
 
-  // useEffect(() => {}, [] || [addButton] || [minusButton]);
+  useEffect(() => {
+    let price = 0;
+    itemsInBasket?.map((item: any, index: number) => {
+      const num = Number(item.foodId.price) * Number(item.amount);
+      price = price + num;
+    });
+    setInTotal(price);
+
+    //
+
+    setOrderFood(
+      localData?.map((el: any, index: number) => {
+        el.foodId.amount = el.amount;
+        return el.foodId;
+      })
+    );
+
+    // setOrderFood([...orderFood, el.foodId]);
+    //
+  }, [localData]);
+
+  console.log(localData, "hii");
+
   return (
     <div style={{ display: "flex", gap: "10px", flexDirection: "column" }}>
       {itemsInBasket &&
@@ -84,3 +106,17 @@ export const OrderMap = (props: OrderMapTuype) => {
     </div>
   );
 };
+
+// const filtered = itemsInBasket?.filter(
+//   (el) => el.foodId._id === basketObj.foodId._id
+// );
+// if (filtered) {
+//   localStorage.setItem(
+//     "items",
+//     JSON.stringify([
+//       ...itemsInBasket,
+//       (filtered.amout = filtered.amout + basketObj.amount),
+//     ])
+//   );
+//   return [...prev];
+// }

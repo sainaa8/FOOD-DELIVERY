@@ -9,6 +9,7 @@ type PropsType = {
 };
 export const Options = (props: PropsType) => {
   const { zurag, text, une } = props;
+
   return (
     <Stack
       sx={{
@@ -49,7 +50,7 @@ export const Options = (props: PropsType) => {
             color: "green",
           }}
         >
-          {une}₮
+          {Number(une).toLocaleString()}₮
         </Stack>
       </Stack>
     </Stack>

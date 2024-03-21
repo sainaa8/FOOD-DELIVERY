@@ -26,7 +26,7 @@ type Sda = {
   data: FoodType[];
 };
 type Basket = {
-  foodId: object;
+  foodId: FoodType;
   amount: number;
 };
 
@@ -36,13 +36,19 @@ export const SearchMap = (props: Sda) => {
   const [foundFood, setFoundFood] = useState<FoodType | null>(null);
   const [open, setOpenModal] = useState<boolean>(false);
 
-  const [basket, setBasket] = useState<Basket[]>([]);
+  const [basket, setBasket] = useState<Basket[]>([
+    {
+      foodId: { _id: "", name: "", image: "", ingredients: "", price: "" },
+      amount: 1,
+    },
+  ]);
+
   const [basketObj, setBasketObj] = useState<{
-    foodId: object;
+    foodId: FoodType;
     amount: number;
   }>({
-    foodId: {},
-    amount: 0,
+    foodId: { _id: "", image: "", ingredients: "", name: "", price: "" },
+    amount: 1,
   });
 
   const handleClose = () => setOpenModal(false);
@@ -65,18 +71,28 @@ export const SearchMap = (props: Sda) => {
     setFoundFood(filteredFood as FoodType);
     handleModalClick();
   };
-  console.log(foundFood);
 
-  const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
+  const itemsInBasket: Basket[] = JSON.parse(
+    localStorage.getItem("items") || "[]"
+  );
   const Buy = () => {
-    setBasket((prev) => {
+    const filtered = itemsInBasket?.find(
+      (el) => el.foodId._id === basketObj.foodId._id
+    );
+
+    if (filtered) {
+      filtered.amount = filtered.amount + basketObj.amount;
+
+      localStorage.setItem("items", JSON.stringify([...itemsInBasket]));
+    } else {
       localStorage.setItem(
         "items",
         JSON.stringify([...itemsInBasket, basketObj])
       );
-      return [...prev, basketObj];
-    });
+    }
+
     handleClose();
+    setBasketObj({ ...basketObj, amount: 1 });
   };
 
   return (

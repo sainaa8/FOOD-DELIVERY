@@ -61,7 +61,7 @@ export const FoodDiteal = (props: FoodDitealType) => {
               color: "green",
             }}
           >
-            {foundFood?.price} ₮
+            {Number(foundFood?.price).toLocaleString()} ₮
           </div>
         </Stack>
         <Stack>

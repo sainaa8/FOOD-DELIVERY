@@ -47,7 +47,7 @@ export const Options = (props: PropsType) => {
               color: "green",
             }}
           >
-            {une}₮
+            {Number(une).toLocaleString()}₮
           </Box>{" "}
           {/* <Box
             sx={{
