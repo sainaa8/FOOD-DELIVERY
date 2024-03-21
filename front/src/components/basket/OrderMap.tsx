@@ -75,11 +75,7 @@ export const OrderMap = (props: OrderMapTuype) => {
         return el.foodId;
       })
     );
-
-  
   }, [localData]);
-
-  console.log(localData, "hii");
 
   return (
     <div style={{ display: "flex", gap: "10px", flexDirection: "column" }}>

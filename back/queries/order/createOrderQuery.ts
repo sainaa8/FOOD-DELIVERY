@@ -15,7 +15,7 @@ const getfoodPrice = async (foodIds: string[]) => {
 };
 
 export const CreateOrderQuery = async (req: Request) => {
-  const { userId, foods, khoroo, district, apartment } = req.body;
+  const { userId, foods, address, nemelt } = req.body;
 
   try {
     const isUserExist = await UserModel.findById({ _id: userId });
@@ -34,7 +34,6 @@ export const CreateOrderQuery = async (req: Request) => {
         $lte: now,
       },
     });
-    
 
     const totalPrice = await getfoodPrice(foods);
 
@@ -51,9 +50,8 @@ export const CreateOrderQuery = async (req: Request) => {
     const result = await OrderModel.create({
       userId,
       foods,
-      khoroo,
-      district,
-      apartment,
+      address,
+      nemelt,
       ordernumber: howManyAreThere + 1,
       totalPrice: sumOfTotalPrice.toString(),
       process: ORDER_PROCESS.PENDING,

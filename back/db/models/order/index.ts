@@ -9,9 +9,8 @@ export type OrderModelType = {
   process: string;
   createdAt: Date;
   updatedAt: Date;
-  district: string;
-  khoroo: string;
-  apartment: string;
+  address: string;
+  nemelt: string;
 };
 
 const OrdreSchema = new Schema<OrderModelType>({
@@ -21,9 +20,8 @@ const OrdreSchema = new Schema<OrderModelType>({
   totalPrice: { type: String, required: true },
   process: { type: String, required: true },
 
-  district: { type: String, required: true },
-  khoroo: { type: String, required: true },
-  apartment: { type: String, required: true },
+  address: { type: String, required: true },
+  nemelt: { type: String, required: true },
 
   createdAt: { type: Date, default: new Date() },
   updatedAt: Date,
