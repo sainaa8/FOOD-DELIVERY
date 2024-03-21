@@ -1,0 +1,5 @@
+export const ORDER_PROCESS = {
+  GOING: "GOING",
+  PENDING: "PENDING",
+  DELIVERED: "DELIVERED",
+};

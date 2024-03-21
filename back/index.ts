@@ -1,7 +1,7 @@
 import { connectDB } from "./db/database";
 import express, { type Application } from "express";
 import cors from "cors";
-import { router, FoodRouter, CategoryRouter } from "./routes";
+import { router, FoodRouter, CategoryRouter, OrderRouter } from "./routes";
 
 import dotenv from "dotenv";
 
@@ -16,6 +16,7 @@ app.use(cors());
 app.use(router);
 app.use(FoodRouter);
 app.use(CategoryRouter);
+app.use(OrderRouter);
 
 // Define the port to run the server on)
 
