@@ -1,12 +1,58 @@
 "use client";
+
 import { Stack, Button } from "@mui/material";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+
 import { OrderMap } from "./Ordermap";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BasketContext } from "../Provider/basketModalProvider";
+import { useRouter } from "next/navigation";
+import { CheckTokenContext } from "../ckeckToken/CheckToken";
+import axios from "axios";
+
+type Arrey = {
+  amount: number;
+  image: string;
+  ingredients: string;
+  name: string;
+  price: string;
+  _id: string;
+};
+type AxiosType = {
+  userId: string;
+  foods: Arrey;
+  address: string;
+  nemelt: string;
+};
+
 export const OrderSecondStep = () => {
-  const { inTotal } = useContext(BasketContext);
+  const { input, setInput, nemelt, SetNemelt } = useContext(BasketContext);
+  const { userData } = useContext(CheckTokenContext);
+  const inTotal = JSON.parse(localStorage.getItem("total") || "[]");
+  const orderedFood = JSON.parse(localStorage.getItem("ordered") || "[]");
+
+  const { push } = useRouter();
+
+  const handleClick = async () => {
+    try {
+      const { data } = await axios.post<AxiosType>(
+        "http://localhost:8001/order",
+        {
+          userId: userData._id,
+          foods: orderedFood,
+          address: input,
+          nemelt: nemelt,
+        }
+      );
+      console.log(data);
+      push("/orderHistory");
+      // localStorage.removeItem("ordered");
+      // localStorage.removeItem("total");
+    } catch (err: any) {
+      console.log(err.messaage);
+    }
+  };
+
   return (
     <Stack
       sx={{
@@ -71,7 +117,7 @@ export const OrderSecondStep = () => {
           </div>
         </div>
         <Button
-          //   onClick={BuyFood}
+          onClick={handleClick}
           sx={{
             backgroundColor: "green",
             color: "white",

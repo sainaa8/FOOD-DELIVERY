@@ -4,13 +4,17 @@ import axios from "axios";
 import { Stack } from "@mui/material";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import { BasketContext } from "../Provider/basketModalProvider";
 
 export const InputsFields = () => {
+  const { input, setInput, nemelt, SetNemelt } = useContext(BasketContext);
+
   const [search, setSearch] = useState(false);
-  const [input, setInput] = useState("");
+
   const [address, setAddress] = useState<any[]>([]);
+
 
   const url = `https://z4ryw4kny0.execute-api.ap-southeast-1.amazonaws.com/production/searchByAddress?address=`;
 
@@ -118,6 +122,9 @@ export const InputsFields = () => {
           }}
         >
           <input
+            onChange={(e) => {
+              SetNemelt(e.target.value);
+            }}
             placeholder="utasaa oruulan uu"
             style={{
               backgroundColor: "#D9D9D9",

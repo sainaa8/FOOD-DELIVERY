@@ -37,16 +37,15 @@ const Model = (props: OrderType) => {
 };
 
 export const OrderMap = () => {
-  const { orderFood, setOrderFood } = useContext(OrderFoodContext);
-  console.log(orderFood);
-
+  const orderedFood = JSON.parse(localStorage.getItem("ordered") || "[]");
+  console.log(orderedFood, "ordered");
   //
-  //   const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
-  //   console.log(itemsInBasket, "zuu");
+  const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
+  console.log(itemsInBasket, "zuu");
 
   return (
     <Stack>
-      {orderFood?.map((el: any, index: number) => {
+      {orderedFood?.map((el: any, index: number) => {
         return (
           <div key={index}>
             <Model

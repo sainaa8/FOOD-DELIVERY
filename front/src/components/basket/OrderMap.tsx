@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { OrderFoodContext } from "../Provider/orderFoodProvider";
 import { MouseEvent } from "react";
+import { BasketContext } from "../Provider/basketModalProvider";
 
 import { ModelForMap } from "./ModelForMap";
 //import { useEffect } from "react";
@@ -18,7 +19,9 @@ backruugaa yavuulahdaa ter object dotor ni amount aa oruulaad yavuulchihna
 
 export const OrderMap = (props: OrderMapTuype) => {
   const { setInTotal } = props;
-  const { orderFood, setOrderFood } = useContext(OrderFoodContext);
+  const { orderFood, setOrderFood, test, setTest } =
+    useContext(OrderFoodContext);
+  const { input, nemelt } = useContext(BasketContext);
   console.log(orderFood, "orderFood");
 
   const [localData, setLocalData] = useState([]);

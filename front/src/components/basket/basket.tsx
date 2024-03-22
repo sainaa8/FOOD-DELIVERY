@@ -8,6 +8,7 @@ import { useState, useContext } from "react";
 import { BasketContext } from "../Provider/basketModalProvider";
 import { CheckTokenContext } from "../ckeckToken/CheckToken";
 import { useRouter } from "next/navigation";
+import { OrderFoodContext } from "../Provider/orderFoodProvider";
 type ModalType = {
   basketModal: boolean;
   setBasketModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,10 +31,11 @@ export const Basket = (props: ModalType) => {
 };
 const BasketModal = () => {
   const { userData, isLoggedIn, isAdmin } = useContext(CheckTokenContext);
+  const { orderFood } = useContext(OrderFoodContext);
   const { basketModal, setBasketModal, inTotal, setInTotal } =
     useContext(BasketContext);
 
-  console.log(isLoggedIn);
+  console.log(inTotal, "niilber");
   const { push } = useRouter();
 
   const BuyFood = () => {
@@ -43,6 +45,8 @@ const BasketModal = () => {
       push("/login");
     }
     // localStorage.removeItem("items");
+    localStorage.setItem("ordered", JSON.stringify(orderFood));
+    localStorage.setItem("total", JSON.stringify(inTotal));
     setBasketModal(false);
   };
 

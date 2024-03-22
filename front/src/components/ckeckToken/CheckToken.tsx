@@ -25,7 +25,6 @@ export const CheckTokenContext = createContext<DataContextType>(
 export const CheckTokenProvider = ({ children }: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  console.log(isAdmin, "ssds");
 
   const [userData, setUserData] = useState({
     _id: "",

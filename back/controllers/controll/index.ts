@@ -132,3 +132,14 @@ export const CreateOrderController = async (req: Request, res: Response) => {
     res.status(400).send(err.message);
   }
 };
+
+import { getOrderQuery } from "../../queries/order/getOrder";
+
+export const GetOrderController = async (req: Request, res: Response) => {
+  try {
+    const result = await getOrderQuery();
+    res.status(200).send(result);
+  } catch (err: any) {
+    res.status(400).send(err.message);
+  }
+};

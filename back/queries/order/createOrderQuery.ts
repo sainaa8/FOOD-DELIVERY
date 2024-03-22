@@ -3,11 +3,20 @@ import { FoodModel, OrderModel, UserModel } from "../../db";
 import { login } from "../../controllers";
 import { ORDER_PROCESS } from "../../constant";
 
-const getfoodPrice = async (foodIds: string[]) => {
+type Arrey = {
+  amount: number;
+  image: string;
+  ingredients: string;
+  name: string;
+  price: string;
+  _id: string;
+};
+
+const getfoodPrice = async (foodIds: Arrey[]) => {
   const prices = Promise.all(
     foodIds.map(async (el) => {
-      const result = await FoodModel.findById({ _id: el });
-      return result?.price;
+      const result = await FoodModel.findById({ _id: el._id });
+      return Number(result?.price) * Number(el.amount);
     })
   );
   console.log(prices, "price");
