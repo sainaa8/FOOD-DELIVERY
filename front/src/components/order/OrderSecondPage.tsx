@@ -45,7 +45,7 @@ export const OrderSecondStep = () => {
         }
       );
       console.log(data);
-      push("/orderHistory");
+      window.location.href = "/orderHistory";
       // localStorage.removeItem("ordered");
       // localStorage.removeItem("total");
     } catch (err: any) {

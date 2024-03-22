@@ -5,9 +5,10 @@ import { Stack } from "@mui/material";
 
 type Prop = {
   names: string[];
+  amount: string;
 };
 export const Delgerengui = (props: Prop) => {
-  const { names } = props;
+  const { names, amount } = props;
   return (
     <div
       style={{
@@ -20,8 +21,8 @@ export const Delgerengui = (props: Prop) => {
         height: "64px",
       }}
     >
-      <div>({names})</div>
-      <div>(3)</div>
+      <div>({names},)</div>
+      <div>({amount})</div>
     </div>
   );
 };
@@ -45,18 +46,6 @@ export const ZahialgiinDelgerengui = (props: PropsType) => {
 
   console.log(data);
 
-  // const [names, setNames] = useState<string[]>([]);
-  //   const [test, setTest] = useState<Food>({
-  //     amount: 0,
-  //     _id: "",
-  //     name: "",
-  //     image: "",
-  //     ingredients: "",
-  //     price: "",
-  //   });
-
-  console.log(data[0].foods);
-
   return (
     <Stack
       sx={{
@@ -73,14 +62,12 @@ export const ZahialgiinDelgerengui = (props: PropsType) => {
       <Stack sx={{ marginTop: "20px", overflow: "scroll" }}>
         {data?.map((el: any, index: number) => (
           <div key={index}>
-            {/* {el.foods.map((el2: any, index2: number) => (
-              <div key={index2}>
-                <Delgerengui
-                 names={el[index].el2[index2]? }
-                />
-              </div>
-            ))} */}
-            shaasanguude
+            <Delgerengui
+              names={el.foods.map((el2: any, index2: number) => {
+                return el2.name;
+              })}
+              amount={el.amount}
+            />
           </div>
         ))}
       </Stack>

@@ -11,6 +11,7 @@ export type OrderModelType = {
   updatedAt: Date;
   address: string;
   nemelt: string;
+  amount: string;
 };
 
 const OrdreSchema = new Schema<OrderModelType>({
@@ -19,7 +20,7 @@ const OrdreSchema = new Schema<OrderModelType>({
   foods: { type: [Schema.Types.ObjectId], ref: "Foods", required: true },
   totalPrice: { type: String, required: true },
   process: { type: String, required: true },
-
+  amount: { type: String, required: true },
   address: { type: String, required: true },
   nemelt: { type: String, required: true },
 

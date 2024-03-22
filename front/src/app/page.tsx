@@ -46,7 +46,7 @@ export default async function Home() {
         >
           {/* <div onClick={handleOpen}>sadfasdf</div> */}
           <Option />
-          <Sale />
+
           <MainFood />
         </div>
       </Stack>

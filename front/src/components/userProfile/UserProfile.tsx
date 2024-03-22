@@ -107,6 +107,10 @@ export const UserProfile = () => {
     window.location.href = "/";
   };
 
+  const toAdminPage = () => {
+    window.location.href = "/admin";
+  };
+
   return (
     <Stack
       sx={{
@@ -210,6 +214,7 @@ export const UserProfile = () => {
                 }}
               >
                 <div
+                  onClick={toAdminPage}
                   style={{
                     padding: "7px 9px",
                     border: "1px solid black",

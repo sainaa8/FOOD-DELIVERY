@@ -50,7 +50,17 @@ export const CreateOrderQuery = async (req: Request) => {
       (accumulator: number, currentValue) => accumulator + Number(currentValue),
       0
     );
-    console.log(howManyAreThere);
+
+    const amounts = foods
+      .filter((el: any) => el.hasOwnProperty("amount"))
+      .map((el: any) => el.amount);
+
+    const amount = amounts.reduce(
+      (accumulator: number, currentValue: number) =>
+        accumulator + Number(currentValue),
+      0
+    );
+    console.log(amount, "ämountsss");
 
     // console.log(foods, "foods");
     console.log(totalPrice, "totalPrice");
@@ -61,6 +71,7 @@ export const CreateOrderQuery = async (req: Request) => {
       foods,
       address,
       nemelt,
+      amount: amount,
       ordernumber: howManyAreThere + 1,
       totalPrice: sumOfTotalPrice.toString(),
       process: ORDER_PROCESS.PENDING,

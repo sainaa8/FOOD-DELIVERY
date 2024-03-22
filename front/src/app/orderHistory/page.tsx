@@ -2,7 +2,7 @@ import React from "react";
 import { OrderHistory } from "@/components/order/OrderHistory";
 import { AxiosError } from "axios";
 import axios from "axios";
-export const GetOrder = async () => {
+const GetOrder = async () => {
   try {
     const { data } = await axios.get("http://localhost:8001/getOrder");
 
@@ -16,7 +16,7 @@ async function page() {
 
   return (
     <div>
-      <OrderHistory />
+      <OrderHistory data={data} />
     </div>
   );
 }
