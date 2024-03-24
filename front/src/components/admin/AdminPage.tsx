@@ -7,7 +7,7 @@ export const AdminInside = async () => {
   console.log(category, "sda");
 
   return (
-    <div style={{ width: "90%", backgroundColor: "yellow" }}>
+    <div style={{ width: "90%" }}>
       <FoodMenu category={category} />
     </div>
   );
