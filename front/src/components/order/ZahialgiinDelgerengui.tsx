@@ -44,8 +44,6 @@ type PropsType = {
 export const ZahialgiinDelgerengui = (props: PropsType) => {
   const { data } = props;
 
-  console.log(data);
-
   return (
     <Stack
       sx={{

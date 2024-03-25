@@ -16,7 +16,7 @@ type Ss = {
 };
 export const FoodMenu = (props: Ss) => {
   const { category } = props;
-  console.log(category, "dks;jsdnn''asmdálsmás;;;;;");
+
   const [data, setData] = useState<DataType>({
     name: "",
     foodId: [],
@@ -34,7 +34,7 @@ export const FoodMenu = (props: Ss) => {
             id: category[0].id,
           }
         );
-        console.log(data);
+
         setData(data);
         setCatId(category[0].id);
       } catch (err) {
@@ -46,7 +46,6 @@ export const FoodMenu = (props: Ss) => {
 
   const handleClick = async (event: MouseEvent<HTMLDivElement>) => {
     const CatId = event.currentTarget.id;
-    console.log(CatId);
 
     try {
       const { data } = await axios.post<DataType>(
@@ -61,7 +60,6 @@ export const FoodMenu = (props: Ss) => {
       console.log(err.message);
     }
   };
-  console.log(data);
 
   return (
     <Stack direction="row" sx={{ width: "100%", fontFamily: "sans-serif" }}>

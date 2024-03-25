@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { Stack, Button } from "@mui/material";
 import { Foods } from "./Foods";
@@ -26,7 +27,6 @@ export const VarietyOfFoods = ({ categories }: CatiType) => {
   // const [categoryID, setCategoryID] = useState("");
   // console.log(categoryID);
   const [catId, setCatId] = useState("");
-  console.log(catId);
 
   const [data, setData] = useState<DataType>({
     name: "",
@@ -43,7 +43,7 @@ export const VarietyOfFoods = ({ categories }: CatiType) => {
             id: categories[0].id,
           }
         );
-        console.log(data);
+
         setData(data);
         setCatId(categories[0].id);
       } catch (err) {
@@ -55,7 +55,6 @@ export const VarietyOfFoods = ({ categories }: CatiType) => {
 
   const handleClick = async (event: MouseEvent<HTMLDivElement>) => {
     const foodId = event.currentTarget.id;
-    console.log(foodId);
 
     try {
       const { data } = await axios.post<DataType>(
@@ -64,7 +63,7 @@ export const VarietyOfFoods = ({ categories }: CatiType) => {
           id: foodId,
         }
       );
-      console.log(data);
+
       setData(data);
       setCatId(foodId);
     } catch (err) {

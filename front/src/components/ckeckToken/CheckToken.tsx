@@ -51,7 +51,7 @@ export const CheckTokenProvider = ({ children }: any) => {
               },
             }
           );
-          console.log(data.isUser, "data");
+
           if (data.isUser == true) {
             setIsAdmin(true);
           } else {

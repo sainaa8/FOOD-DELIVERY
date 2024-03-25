@@ -8,7 +8,7 @@ export type CategoriesType = {
 };
 
 ///ymr lallran bolood baigaag medeh ym alga sda neern
-export const GetAllCategories = async () => {
+const GetAllCategories = async () => {
   try {
     const { data } = await axios.get<CategoriesType[]>(
       "https://food-delivery-isg2.onrender.com/getCategories"
@@ -19,12 +19,12 @@ export const GetAllCategories = async () => {
   }
 };
 async function AdminPage() {
-  // const data = await GetAllCategories();
-  // console.log(data);
+  const data = await GetAllCategories();
+
 
   return (
     <Stack direction="row" sx={{ width: "100vw", justifyContent: "center" }}>
-      <AdminInside />
+      <AdminInside category={data as CategoriesType[]}/>
     </Stack>
   );
 }

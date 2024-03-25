@@ -26,13 +26,11 @@ export const LoginModal = () => {
   const handleChange = (el: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = el.target;
     setUserdata({ ...userdata, [name]: value });
-    console.log(userdata);
   };
 
   useEffect(() => {
     if (userdata.email !== "" && userdata.password !== "") {
       setDisable(false);
-      console.log(disable);
     } else if (userdata.email === "" && userdata.password === "") {
       setDisable(true);
     }

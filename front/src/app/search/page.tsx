@@ -6,11 +6,7 @@ import { useContext } from "react";
 import { SearchMap } from "@/components/search/searchMap";
 import { useSearchParams } from "next/navigation";
 import { Stack } from "@mui/material";
-const getFilterFoods = async () => {
-  ///const { search, setSearch } = useContext(SearchContext);
-  const params = useSearchParams();
-  const id = params.get("id");
-  console.log(id);
+const GetFilterFoods = async (id: string) => {
   const body = {
     filter: {
       $or: [
@@ -28,7 +24,6 @@ const getFilterFoods = async () => {
       ],
     },
   };
-  console.log(body);
 
   try {
     const { data } = await axios.post<FoodType[]>(
@@ -42,9 +37,12 @@ const getFilterFoods = async () => {
   }
 };
 
-export default async function Search() {
-  const data: FoodType[] | undefined = await getFilterFoods();
-  console.log(data);
+export default async function Search({
+  searchParams,
+}: {
+  searchParams: { id: string };
+}) {
+  const data: FoodType[] | undefined = await GetFilterFoods(searchParams.id);
 
   return (
     <Stack sx={{ width: "100vw", alignItems: "center" }}>

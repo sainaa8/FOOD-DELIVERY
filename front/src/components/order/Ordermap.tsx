@@ -1,7 +1,7 @@
+"use client";
+
 import { Stack } from "@mui/material";
 import Image from "next/image";
-import { useContext } from "react";
-import { OrderFoodContext } from "../Provider/orderFoodProvider";
 
 type OrderType = {
   image: string;
@@ -36,17 +36,29 @@ const Model = (props: OrderType) => {
   );
 };
 
+// type Orderty = {
+//   orderedFood: OrderType[];
+// };
+
+type OrderTypesd = {
+  image: string;
+  name: string;
+  ingredients: string;
+  price: number;
+  amount: string | number;
+};
 export const OrderMap = () => {
-  const orderedFood = JSON.parse(localStorage.getItem("ordered") || "[]");
-  console.log(orderedFood, "ordered");
+  const orderedFood: OrderTypesd[] =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("ordered") || "[]");
+  console.log(orderedFood, "sdfsfsf");
+
   //
-  const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
-  console.log(itemsInBasket, "zuu");
 
   return (
     <Stack>
-      {orderedFood?.map((el: any, index: number) => {
-        return (
+      {orderedFood &&
+        orderedFood.map((el: any, index: number) => (
           <div key={index}>
             <Model
               image={el.image}
@@ -56,8 +68,7 @@ export const OrderMap = () => {
               amount={el.amount}
             />
           </div>
-        );
-      })}
+        ))}
     </Stack>
   );
 };

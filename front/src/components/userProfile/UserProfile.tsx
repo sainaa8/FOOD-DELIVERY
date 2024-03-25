@@ -58,8 +58,6 @@ export const UserProfile = () => {
     phone: string;
   };
 
-  console.log(isAdmin, "propage");
-
   ///////gertee hiinee
   useEffect(() => {
     setUserUpdate({
@@ -100,7 +98,6 @@ export const UserProfile = () => {
       setSuccess(false);
     }, 2000);
   };
-  console.log(datas);
 
   const exit = () => {
     localStorage.removeItem("Token");

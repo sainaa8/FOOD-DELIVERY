@@ -45,12 +45,10 @@ export const SignUp = () => {
   });
   const [error, setError] = useState<string>();
   const [disable, setDisable] = useState(true);
-  console.log(disable);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserdata({ ...userdata, [name]: value });
-    console.log(userdata);
   };
 
   const handleClick = async (e: any) => {

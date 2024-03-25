@@ -1,3 +1,5 @@
+"use client";
+
 import { Stack } from "@mui/material";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import LocationOnIcon from "@mui/icons-material/LocationOn";

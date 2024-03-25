@@ -28,8 +28,12 @@ type AxiosType = {
 export const OrderSecondStep = () => {
   const { input, setInput, nemelt, SetNemelt } = useContext(BasketContext);
   const { userData } = useContext(CheckTokenContext);
-  const inTotal = JSON.parse(localStorage.getItem("total") || "[]");
-  const orderedFood = JSON.parse(localStorage.getItem("ordered") || "[]");
+  const inTotal =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("total") || "[]");
+  const orderedFood =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("ordered") || "[]");
 
   const { push } = useRouter();
 
@@ -44,7 +48,7 @@ export const OrderSecondStep = () => {
           nemelt: nemelt,
         }
       );
-      console.log(data);
+
       window.location.href = "/orderHistory";
       // localStorage.removeItem("ordered");
       // localStorage.removeItem("total");

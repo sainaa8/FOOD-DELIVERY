@@ -33,7 +33,10 @@ export const Opt = (props: PropsType) => {
           marginTop: "20px",
         }}
       >
+   
+
         {icon}
+    
       </Stack>
       <Stack>
         <Box
@@ -66,22 +69,22 @@ import SetMealOutlinedIcon from "@mui/icons-material/SetMealOutlined";
 export const Option = () => {
   const moc = [
     {
-      icon: <AutoStoriesOutlinedIcon fontSize="40px" />,
+      icon: <AutoStoriesOutlinedIcon style={{fontSize:"40px"}} />,
       text1: "Хүргэлтийн төлөв хянах",
       text2: "Захиалга бэлтгэлийн явцыг хянах",
     },
     {
-      icon: <AccessTimeOutlinedIcon fontSize="40px" />,
+      icon: <AccessTimeOutlinedIcon style={{fontSize:"40px"}}/>,
       text1: "Шуурхай хүргэлт",
       text2: "Захиалга бэлтгэлийн явцыг хянах",
     },
     {
-      icon: <SetMealOutlinedIcon fontSize="40px" />,
+      icon: <SetMealOutlinedIcon style={{fontSize:"40px"}} />,
       text1: "Эрүүл, баталгаат орц",
       text2: "Захиалга бэлтгэлийн явцыг хянах",
     },
     {
-      icon: <AutoStoriesOutlinedIcon fontSize="40px" />,
+      icon: <AutoStoriesOutlinedIcon style={{fontSize:"40px"}} />,
       text1: "Хоолны өргөн сонголтх",
       text2: "Захиалга бэлтгэлийн явцыг хянах",
     },

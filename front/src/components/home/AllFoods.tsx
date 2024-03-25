@@ -85,13 +85,11 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
     handleModalClick();
   };
 
-  const itemsInBasket: Basket[] = JSON.parse(
-    localStorage.getItem("items") || "[]"
-  );
+  const itemsInBasket: Basket[] =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("items") || "[]");
 
   const Buy = () => {
-    console.log(basketObj);
-
     const filtered = itemsInBasket?.find(
       (el) => el.foodId._id === basketObj.foodId._id
     );
@@ -106,8 +104,6 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
         JSON.stringify([...itemsInBasket, basketObj])
       );
     }
-
-    console.log(filtered);
 
     handleClose();
     setBasketObj({ ...basketObj, amount: 1 });

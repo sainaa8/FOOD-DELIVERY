@@ -35,7 +35,6 @@ const BasketModal = () => {
   const { basketModal, setBasketModal, inTotal, setInTotal } =
     useContext(BasketContext);
 
-  console.log(inTotal, "niilber");
   const { push } = useRouter();
 
   const BuyFood = () => {

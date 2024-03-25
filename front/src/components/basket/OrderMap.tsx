@@ -22,14 +22,15 @@ export const OrderMap = (props: OrderMapTuype) => {
   const { orderFood, setOrderFood, test, setTest } =
     useContext(OrderFoodContext);
   const { input, nemelt } = useContext(BasketContext);
-  console.log(orderFood, "orderFood");
 
   const [localData, setLocalData] = useState([]);
   const [tempTotal, setTempTotla] = useState([]);
 
   // console.log(tempTotal);
 
-  const itemsInBasket = JSON.parse(localStorage.getItem("items") || "[]");
+  const itemsInBasket =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("items") || "[]");
 
   useEffect(() => {
     setLocalData(itemsInBasket);

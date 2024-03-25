@@ -1,14 +1,7 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import OutlinedInput from "@mui/material/OutlinedInput";
+
 import { Stack } from "@mui/material";
-import InputAdornment from "@mui/material/InputAdornment";
 
-import FormControl from "@mui/material/FormControl";
-
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { PasswordInput } from "./PasswordInput";
 
 type CodeType = {
@@ -27,7 +20,7 @@ export const Code = (props: CodeType) => {
           fontFamily: "sans-serif",
         }}
       >
-        Таны {email && <span style={{ color: "green" }}>"{email}"</span>} хаяг
+        Таны {email && <span style={{ color: "green" }}>{email}</span>} хаяг
         руу сэргээх код илгээх болно.
       </Stack>
 

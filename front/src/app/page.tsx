@@ -2,11 +2,10 @@ import Image from "next/image";
 
 import { Grid, Box, Stack } from "@mui/material";
 import { Option } from "@/components/home/Options";
-import { Sale } from "@/components/home/Sale";
 import { MainFood } from "@/components/home/MainFood";
 import axios from "axios";
 
-export const GetAllFoods = async () => {
+const GetAllFoods = async () => {
   try {
     const { data } = await axios.post<FoodType[]>(
       "https://food-delivery-isg2.onrender.com/foods"
@@ -20,7 +19,6 @@ export const GetAllFoods = async () => {
 
 export default async function Home() {
   const data = await GetAllFoods();
-  console.log(data);
 
   return (
     <Stack sx={{ display: "flex", justifyContent: "center" }}>
@@ -47,7 +45,7 @@ export default async function Home() {
           {/* <div onClick={handleOpen}>sadfasdf</div> */}
           <Option />
 
-          <MainFood />
+          <MainFood data={data as FoodType[]} />
         </div>
       </Stack>
     </Stack>

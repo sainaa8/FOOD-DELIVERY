@@ -72,9 +72,9 @@ export const SearchMap = (props: Sda) => {
     handleModalClick();
   };
 
-  const itemsInBasket: Basket[] = JSON.parse(
-    localStorage.getItem("items") || "[]"
-  );
+  const itemsInBasket: Basket[] =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("items") || "[]");
   const Buy = () => {
     const filtered = itemsInBasket?.find(
       (el) => el.foodId._id === basketObj.foodId._id

@@ -39,7 +39,6 @@ export const RecoverPass = () => {
   useEffect(() => {
     if (password.password !== "" && password.repassword !== "") {
       setDisabled(false);
-      console.log(disabledd);
     } else if (password.password === "" && password.repassword === "") {
       setDisabled(true);
     }
@@ -48,7 +47,6 @@ export const RecoverPass = () => {
   useEffect(() => {
     if (email !== "") {
       setDisabled(false);
-      console.log(disabledd);
     } else if (email === "") {
       setDisabled(true);
     }
@@ -57,7 +55,6 @@ export const RecoverPass = () => {
   useEffect(() => {
     if (code !== "") {
       setDisabled(false);
-      console.log(disabledd);
     } else if (code === "") {
       setDisabled(true);
     }
@@ -67,14 +64,13 @@ export const RecoverPass = () => {
     e.preventDefault();
 
     if (stage === 0) {
-      console.log(disabledd);
-
       try {
-        const { data } = await axios.post("https://food-delivery-isg2.onrender.com/recover", {
-          email: email,
-        });
-
-        // console.log(data.temp);
+        const { data } = await axios.post(
+          "https://food-delivery-isg2.onrender.com/recover",
+          {
+            email: email,
+          }
+        );
 
         if (data.temp === "User not found" || data.temp === "") {
           setError("User not found");
@@ -90,10 +86,12 @@ export const RecoverPass = () => {
 
     if (stage === 1) {
       try {
-        const { data } = await axios.post("https://food-delivery-isg2.onrender.com/number", {
-          email: email,
-        });
-        console.log(data);
+        const { data } = await axios.post(
+          "https://food-delivery-isg2.onrender.com/number",
+          {
+            email: email,
+          }
+        );
 
         if (data.number !== code) {
           setError("code is wrong");
@@ -114,11 +112,14 @@ export const RecoverPass = () => {
           setError("password is not same");
           throw new Error("password is not same");
         }
-        const { data } = await axios.post("https://food-delivery-isg2.onrender.com/repassword", {
-          email: email,
-          password: password.password,
-        });
-        console.log(data);
+        const { data } = await axios.post(
+          "https://food-delivery-isg2.onrender.com/repassword",
+          {
+            email: email,
+            password: password.password,
+          }
+        );
+
         setSuccess(true);
 
         setTimeout(() => {

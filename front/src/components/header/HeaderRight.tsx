@@ -41,7 +41,6 @@ export const HeaderRight = () => {
   const handlerPushToBasket = () => {
     setBasketModal(!basketModal);
   };
-  console.log(basketModal);
 
   return (
     <Stack>
