@@ -21,7 +21,7 @@ export const Delgerengui = (props: Prop) => {
         height: "64px",
       }}
     >
-      <div>({names},)</div>
+      <div>({names})</div>
       <div>({amount})</div>
     </div>
   );
@@ -64,7 +64,7 @@ export const ZahialgiinDelgerengui = (props: PropsType) => {
           <div key={index}>
             <Delgerengui
               names={el.foods.map((el2: any, index2: number) => {
-                return el2.name;
+                return [el2.name, ",  "];
               })}
               amount={el.amount}
             />

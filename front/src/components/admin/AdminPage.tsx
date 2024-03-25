@@ -8,7 +8,7 @@ export const AdminInside = async () => {
 
   return (
     <div style={{ width: "90%" }}>
-      <FoodMenu category={category} />
+      <FoodMenu category={category as CategoriesType[]} />
     </div>
   );
 };

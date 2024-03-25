@@ -90,11 +90,27 @@ export const FoodMenu = (props: Ss) => {
                 border: "1px solid black",
                 backgroundColor: `${el.id == catId ? "green" : "white"}`,
                 color: `${el.id == catId ? "white" : "black"}`,
+                cursor: "pointer",
+                paddingLeft: "30px",
               }}
             >
               {el.name}
             </div>
           ))}
+          <div
+            style={{
+              fontSize: "18px",
+              cursor: "pointer",
+              marginTop: "40px",
+              borderRadius: "8px",
+              width: "300px",
+              padding: "10px 0px",
+              border: "1px solid black",
+              paddingLeft: "30px",
+            }}
+          >
+            + Craete New Category
+          </div>
         </Stack>
       </Stack>
       <div style={{ marginLeft: "40px", width: "100%" }}>
