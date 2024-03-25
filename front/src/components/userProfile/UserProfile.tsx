@@ -84,7 +84,7 @@ export const UserProfile = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8001/userup",
+        "https://food-delivery-isg2.onrender.com/userup",
         userUpdate
       );
       setData(data);

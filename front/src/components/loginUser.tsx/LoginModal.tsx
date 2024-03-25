@@ -41,7 +41,7 @@ export const LoginModal = () => {
   const handleClick = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8001/login",
+        "https://food-delivery-isg2.onrender.com/login",
         userdata
       );
 

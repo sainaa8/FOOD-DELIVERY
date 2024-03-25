@@ -36,7 +36,7 @@ export const OrderSecondStep = () => {
   const handleClick = async () => {
     try {
       const { data } = await axios.post<AxiosType>(
-        "http://localhost:8001/order",
+        "https://food-delivery-isg2.onrender.com/order",
         {
           userId: userData._id,
           foods: orderedFood,

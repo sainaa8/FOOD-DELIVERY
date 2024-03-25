@@ -70,7 +70,7 @@ export const RecoverPass = () => {
       console.log(disabledd);
 
       try {
-        const { data } = await axios.post("http://localhost:8001/recover", {
+        const { data } = await axios.post("https://food-delivery-isg2.onrender.com/recover", {
           email: email,
         });
 
@@ -90,7 +90,7 @@ export const RecoverPass = () => {
 
     if (stage === 1) {
       try {
-        const { data } = await axios.post("http://localhost:8001/number", {
+        const { data } = await axios.post("https://food-delivery-isg2.onrender.com/number", {
           email: email,
         });
         console.log(data);
@@ -114,7 +114,7 @@ export const RecoverPass = () => {
           setError("password is not same");
           throw new Error("password is not same");
         }
-        const { data } = await axios.post("http://localhost:8001/repassword", {
+        const { data } = await axios.post("https://food-delivery-isg2.onrender.com/repassword", {
           email: email,
           password: password.password,
         });

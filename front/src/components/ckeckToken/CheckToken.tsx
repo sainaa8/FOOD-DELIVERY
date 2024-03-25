@@ -42,7 +42,7 @@ export const CheckTokenProvider = ({ children }: any) => {
       const getUserToken = async () => {
         try {
           const { data } = await axios.post(
-            "http://localhost:8001/checkToken",
+            "https://food-delivery-isg2.onrender.com/checkToken",
             {},
             {
               headers: {

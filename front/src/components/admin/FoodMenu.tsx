@@ -29,7 +29,7 @@ export const FoodMenu = (props: Ss) => {
     const defaultdata = async () => {
       try {
         const { data } = await axios.post<DataType>(
-          "http://localhost:8001/getCategory",
+          "https://food-delivery-isg2.onrender.com/getCategory",
           {
             id: category[0].id,
           }
@@ -50,7 +50,7 @@ export const FoodMenu = (props: Ss) => {
 
     try {
       const { data } = await axios.post<DataType>(
-        "http://localhost:8001/getCategory",
+        "https://food-delivery-isg2.onrender.com/getCategory",
         {
           id: CatId,
         }

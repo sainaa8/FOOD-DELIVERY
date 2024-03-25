@@ -9,7 +9,7 @@ export type CategoriesType = {
 export const GetAllCategories = async () => {
   try {
     const { data } = await axios.get<CategoriesType[]>(
-      "http://localhost:8001/getCategories"
+      "https://food-delivery-isg2.onrender.com/getCategories"
     );
     // console.log(data);
 
