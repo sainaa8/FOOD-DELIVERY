@@ -111,6 +111,10 @@ export const UserProfile = () => {
     window.location.href = "/admin";
   };
 
+  const toAdminOrderHistory = () => {
+    window.location.href = "/orderHistory";
+  };
+
   return (
     <Stack
       sx={{
@@ -171,6 +175,7 @@ export const UserProfile = () => {
               }}
             >
               <div
+                onClick={toAdminOrderHistory}
                 style={{
                   padding: "7px 9px",
                   border: "1px solid black",
