@@ -51,9 +51,6 @@ export const OrderMap = () => {
   const orderedFood: OrderTypesd[] =
     typeof window !== "undefined" &&
     JSON.parse(localStorage.getItem("ordered") || "[]");
-  console.log(orderedFood, "sdfsfsf");
-
-  //
 
   return (
     <Stack>

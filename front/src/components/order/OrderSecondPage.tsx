@@ -48,6 +48,7 @@ export const OrderSecondStep = () => {
           nemelt: nemelt,
         }
       );
+      console.log(data);
 
       window.location.href = "/orderHistory";
       // localStorage.removeItem("ordered");
