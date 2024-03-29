@@ -4,6 +4,28 @@ import { CategoriesType } from "@/app/admin/page";
 import { MouseEvent, useState, useEffect } from "react";
 import axios from "axios";
 import { AdminFoods } from "./Foods";
+import { Modul } from "./Module";
+
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import { Module } from "module";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 type DataType = {
   name: string;
@@ -24,6 +46,12 @@ export const FoodMenu = (props: Ss) => {
   });
 
   const [catId, setCatId] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    window.location.href = "/admin";
+    setOpen(false);
+  };
 
   useEffect(() => {
     const defaultdata = async () => {
@@ -84,18 +112,24 @@ export const FoodMenu = (props: Ss) => {
               style={{
                 borderRadius: "8px",
                 width: "300px",
-                padding: "10px 0px",
+                padding: "10px 20px",
                 border: "1px solid black",
                 backgroundColor: `${el.id == catId ? "green" : "white"}`,
                 color: `${el.id == catId ? "white" : "black"}`,
                 cursor: "pointer",
                 paddingLeft: "30px",
+                display: "flex",
+                justifyContent: "space-between",
               }}
             >
               {el.name}
+              <div>
+                <DeleteForeverIcon />
+              </div>
             </div>
           ))}
           <div
+            onClick={handleOpen}
             style={{
               fontSize: "18px",
               cursor: "pointer",
@@ -114,6 +148,16 @@ export const FoodMenu = (props: Ss) => {
       <div style={{ marginLeft: "40px", width: "100%" }}>
         <AdminFoods data={data} />
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Modul handleClose={handleClose as () => void} />
+        </Box>
+      </Modal>
     </Stack>
   );
 };

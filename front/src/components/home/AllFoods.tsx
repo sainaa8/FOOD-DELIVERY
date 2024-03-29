@@ -96,7 +96,7 @@ export const AllFoods = ({ foods }: AllFoodsProps) => {
 
     if (filtered) {
       filtered.amount = filtered.amount + basketObj.amount;
-      k;
+
       localStorage.setItem("items", JSON.stringify([...itemsInBasket]));
     } else {
       localStorage.setItem(
