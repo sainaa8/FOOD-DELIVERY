@@ -143,3 +143,13 @@ export const GetOrderController = async (req: Request, res: Response) => {
     res.status(400).send(err.message);
   }
 };
+import { deleteCategoryQuery } from "../../queries/category/deleteCategory";
+
+export const DeleteCategoryController = async (req: Request, res: Response) => {
+  try {
+    const result = await deleteCategoryQuery(req);
+    res.status(200).send(result);
+  } catch (err: any) {
+    res.status(400).send(err.message);
+  }
+};

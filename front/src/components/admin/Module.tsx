@@ -13,9 +13,12 @@ export const Modul = (props: SS) => {
 
   const handleCraete = async () => {
     try {
-      const { data } = await axios.post("http://localhost:8001/category", {
-        name: name,
-      });
+      const { data } = await axios.post(
+        "https://food-delivery-isg2.onrender.com/category",
+        {
+          name: name,
+        }
+      );
       console.log(data);
       handleClose();
     } catch (err: any) {
