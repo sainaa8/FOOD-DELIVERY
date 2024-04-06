@@ -93,7 +93,7 @@ export const FoodMenu = (props: Ss) => {
     try {
       const categoryId = event.currentTarget.id;
       const { data } = await axios.post(
-        "http://localhost:8001/deleteCategory",
+        "https://food-delivery-isg2.onrender.com/deleteCategory",
         {
           id: categoryId,
         }

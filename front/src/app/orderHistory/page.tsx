@@ -4,7 +4,9 @@ import { AxiosError } from "axios";
 import axios from "axios";
 const GetOrder = async () => {
   try {
-    const { data } = await axios.get("https://food-delivery-isg2.onrender.com/getOrder");
+    const { data } = await axios.get(
+      "https://food-delivery-isg2.onrender.com/getOrder"
+    );
 
     return data;
   } catch (err: AxiosError | any) {

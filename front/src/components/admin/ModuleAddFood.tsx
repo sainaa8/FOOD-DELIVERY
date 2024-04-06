@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import { ChangeEvent } from "react";
-
+import { Upimage } from "./Test";
 import React from "react";
 
 type SS = {
@@ -33,7 +33,7 @@ export const ModuleAddFood = (props: SS) => {
     console.log(newFood, "newfood ");
     try {
       const { data } = await axios.post(
-        "http://localhost:8001/createFood",
+        "https://food-delivery-isg2.onrender.com/createFood",
         newFood
       );
       handleCloseOpenAddFood();
@@ -177,7 +177,8 @@ export const ModuleAddFood = (props: SS) => {
         </div>
         <div>
           <div>Food Image</div>
-          <div
+          <Upimage />
+          {/* <div
             style={{
               width: "100%",
               height: "40px",
@@ -199,7 +200,7 @@ export const ModuleAddFood = (props: SS) => {
                 marginLeft: "30px",
               }}
             />
-          </div>
+          </div> */}
         </div>
       </div>
 
