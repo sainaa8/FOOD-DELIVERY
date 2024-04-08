@@ -89,6 +89,22 @@ export const FoodMenu = (props: Ss) => {
     }
   };
 
+  const handleFelete = async (event: MouseEvent<HTMLDivElement>) => {
+    try {
+      const categoryId = event.currentTarget.id;
+      const { data } = await axios.post(
+        "https://food-delivery-isg2.onrender.com/deleteCategory",
+        {
+          id: categoryId,
+        }
+      );
+      window.location.href = "/admin";
+      console.log(data);
+    } catch (err: any) {
+      console.log(err.message);
+    }
+  };
+
   return (
     <Stack direction="row" sx={{ width: "100%", fontFamily: "sans-serif" }}>
       <Stack sx={{ width: "300px" }}>
@@ -107,8 +123,6 @@ export const FoodMenu = (props: Ss) => {
           {category?.map((el: any, index: number) => (
             <div
               key={index}
-              onClick={handleClick}
-              id={el.id}
               style={{
                 borderRadius: "8px",
                 width: "300px",
@@ -122,8 +136,10 @@ export const FoodMenu = (props: Ss) => {
                 justifyContent: "space-between",
               }}
             >
-              {el.name}
-              <div>
+              <div onClick={handleClick} id={el.id}>
+                {el.name}
+              </div>
+              <div id={el.id} onClick={handleFelete}>
                 <DeleteForeverIcon />
               </div>
             </div>
@@ -150,7 +166,7 @@ export const FoodMenu = (props: Ss) => {
       </div>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

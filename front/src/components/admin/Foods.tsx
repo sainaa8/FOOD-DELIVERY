@@ -1,5 +1,12 @@
+"use client";
 import { Stack } from "@mui/material";
 import { Options } from "../menu/Modal";
+import { Modul } from "./Module";
+import { ModuleAddFood } from "./ModuleAddFood";
+import { Modal } from "@mui/material";
+import Box from "@mui/material/Box";
+
+import React from "react";
 type DataType = {
   name: string;
   foodId: FoodType[];
@@ -8,8 +15,29 @@ type DataType = {
 type SS = {
   data: DataType;
 };
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 export const AdminFoods = (props: SS) => {
   const { data } = props;
+
+  const [openAddFood, setOpenAddFood] = React.useState(false);
+  const handleOpenAddFood = () => setOpenAddFood(true);
+  const handleCloseOpenAddFood = () => {
+    window.location.href = "/admin";
+    setOpenAddFood(false);
+  };
+
   return (
     <Stack>
       <div
@@ -30,6 +58,7 @@ export const AdminFoods = (props: SS) => {
           BreakFast
         </div>
         <div
+          onClick={handleOpenAddFood}
           style={{
             marginRight: "110px",
             marginLeft: "30px",
@@ -39,6 +68,7 @@ export const AdminFoods = (props: SS) => {
             backgroundColor: "green",
             padding: "10px 30px",
             borderRadius: "8px",
+            cursor: "pointer",
           }}
         >
           Add new food
@@ -62,6 +92,16 @@ export const AdminFoods = (props: SS) => {
           </div>
         ))}
       </Stack>
+      <Modal
+        open={openAddFood}
+        onClose={() => setOpenAddFood(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <ModuleAddFood handleClose={setOpenAddFood} />
+        </Box>
+      </Modal>
     </Stack>
   );
 };

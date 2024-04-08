@@ -95,14 +95,13 @@ export const Footer = () => {
               <div style={{ textDecoration: "underline" }}>Нүүр</div>
             </Box>
 
-            <Box
-              onClick={() =>
-                push("https://www.youtube.com/watch?v=AZyR9QymVoo")
-              }
-              sx={{ cursor: "pointer" }}
+            <a
+              href="https://www.youtube.com/watch?v=sBj9GDg-FtY"
+              target="_blank"
+              style={{ cursor: "pointer" }}
             >
               <div style={{ textDecoration: "underline" }}> Холбоо барих</div>
-            </Box>
+            </a>
 
             <Box onClick={() => push("/menu")} sx={{ cursor: "pointer" }}>
               <div style={{ textDecoration: "underline" }}>Хоолны цэс</div>
