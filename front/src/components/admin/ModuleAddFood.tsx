@@ -4,12 +4,22 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import { ChangeEvent } from "react";
-import { Upimage } from "./Test";
+import { useEffect } from "react";
+
 import React from "react";
+
+const getPresignedURL = async () => {
+  const { data } = await axios.get(
+    "http://localhost:8001/upload-image-into-r2"
+  );
+
+  return data as { uploadUrl: string; accessUrls: string };
+};
 
 type SS = {
   handleClose: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
 export const ModuleAddFood = (props: SS) => {
   const { handleClose } = props;
   const [newFood, setNewFood] = useState({
@@ -19,6 +29,46 @@ export const ModuleAddFood = (props: SS) => {
     price: "",
     category: "",
   });
+  console.log(newFood);
+
+  const [image, setImage] = useState<FileList | null>(null);
+
+  const [accessUrl, setAccessUrl] = useState<string>("");
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChooseFile = (event: ChangeEvent<HTMLInputElement>) => {
+    setImage(event.target.files);
+  };
+
+  useEffect(() => {
+    if (accessUrl) {
+      setNewFood((prevnewFood) => ({
+        ...prevnewFood,
+        image: accessUrl,
+      }));
+    }
+  }, [accessUrl]);
+
+  const uploadImage = async () => {
+    if (image) {
+      setLoading(true);
+
+      const img = image[0] as File;
+
+      const { uploadUrl, accessUrls } = await getPresignedURL();
+
+      await axios.put(uploadUrl, img, {
+        headers: {
+          "Content-Type": img.type,
+        },
+      });
+
+      setAccessUrl(accessUrls);
+
+      setLoading(false);
+    }
+  };
 
   const handlechange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -177,7 +227,13 @@ export const ModuleAddFood = (props: SS) => {
         </div>
         <div>
           <div>Food Image</div>
-          <Upimage />
+          <div>
+            <input type="file" onChange={handleChooseFile} />
+
+            <button onClick={uploadImage}>
+              {loading ? "Loading" : "Submit"}​​​​​{" "}
+            </button>
+          </div>
           {/* <div
             style={{
               width: "100%",

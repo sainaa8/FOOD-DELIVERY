@@ -10,6 +10,7 @@ import {
   userUpController,
 } from "../../controllers";
 import { loginMWare } from "../../middleware/loginMWare";
+import { getPresignedUrl } from "../../cloudflary";
 
 export const router = Router();
 
@@ -21,3 +22,5 @@ router.post("/recover", update);
 router.post("/repassword", rePasswordController);
 router.post("/checkToken", checkTokenController);
 router.post("/userup", userUpController);
+
+router.get("/upload-image-into-r2", getPresignedUrl);

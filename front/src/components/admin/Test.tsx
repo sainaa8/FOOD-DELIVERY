@@ -1,50 +1,50 @@
-"use client";
+// "use client";
 
-import axios from "axios";
+// import axios from "axios";
 
-import { ChangeEvent, useState } from "react";
+// import { ChangeEvent, useState } from "react";
 
-const getPresignedURL = async () => {
-  const { data } = await axios("/api/upload-image-into-r2");
+// const getPresignedURL = async () => {
+//   const { data } = await axios("http://localhost:8001/uploadImage");
 
-  return data as { uploadUrl: string; accessUrls: string };
-};
-export const Upimage = () => {
-  const [image, setImage] = useState<FileList | null>(null);
+//   return data as { uploadUrl: string; accessUrls: string };
+// };
+// export const Upimage = () => {
+//   const [image, setImage] = useState<FileList | null>(null);
 
-  const [accessUrl, setAccessUrl] = useState<string>("");
+//   const [accessUrl, setAccessUrl] = useState<string>("");
 
-  const [loading, setLoading] = useState(false);
+//   const [loading, setLoading] = useState(false);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setImage(event.target.files);
-  };
-  const uploadImage = async () => {
-    if (image) {
-      setLoading(true);
+//   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+//     setImage(event.target.files);
+//   };
+//   const uploadImage = async () => {
+//     if (image) {
+//       setLoading(true);
 
-      const img = image[0] as File;
+//       const img = image[0] as File;
 
-      const { uploadUrl, accessUrls } = await getPresignedURL();
+//       const { uploadUrl, accessUrls } = await getPresignedURL();
 
-      await axios.put(uploadUrl, img, {
-        headers: {
-          "Content-Type": img.type,
-        },
-      });
+//       await axios.put(uploadUrl, img, {
+//         headers: {
+//           "Content-Type": img.type,
+//         },
+//       });
 
-      setAccessUrl(accessUrls);
+//       setAccessUrl(accessUrls);
 
-      setLoading(false);
-    }
-  };
-  return (
-    <div>
-      <input type="file" onChange={handleChange} />
+//       setLoading(false);
+//     }
+//   };
+//   return (
+//     <div>
+//       <input type="file" onChange={handleChange} />
 
-      <button onClick={uploadImage}>
-        {loading ? "Loading" : "Submit"}​​​​​{" "}
-      </button>
-    </div>
-  );
-};
+//       <button onClick={uploadImage}>
+//         {loading ? "Loading" : "Submit"}​​​​​{" "}
+//       </button>
+//     </div>
+//   );
+// };
