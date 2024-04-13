@@ -123,6 +123,8 @@ export const FoodMenu = (props: Ss) => {
           {category?.map((el: any, index: number) => (
             <div
               key={index}
+              onClick={handleClick}
+              id={el.id}
               style={{
                 borderRadius: "8px",
                 width: "300px",
@@ -136,9 +138,7 @@ export const FoodMenu = (props: Ss) => {
                 justifyContent: "space-between",
               }}
             >
-              <div onClick={handleClick} id={el.id}>
-                {el.name}
-              </div>
+              <div>{el.name}</div>
               <div id={el.id} onClick={handleFelete}>
                 <DeleteForeverIcon />
               </div>

@@ -5,12 +5,12 @@ import axios from "axios";
 import { useState } from "react";
 import { ChangeEvent } from "react";
 import { useEffect } from "react";
-
+import Image from "next/image";
 import React from "react";
 
 const getPresignedURL = async () => {
   const { data } = await axios.get(
-    "http://localhost:8001/upload-image-into-r2"
+    "https://food-delivery-isg2.onrender.com/upload-image-into-r2"
   );
 
   return data as { uploadUrl: string; accessUrls: string };
@@ -40,6 +40,7 @@ export const ModuleAddFood = (props: SS) => {
   const handleChooseFile = (event: ChangeEvent<HTMLInputElement>) => {
     setImage(event.target.files);
   };
+  console.log(image, "imagee");
 
   useEffect(() => {
     if (accessUrl) {
@@ -227,6 +228,18 @@ export const ModuleAddFood = (props: SS) => {
         </div>
         <div>
           <div>Food Image</div>
+          {newFood.image ? (
+            <Image
+              alt=""
+              src={`${newFood.image}`}
+              width={150}
+              height={89}
+              style={{ borderRadius: "10px" }}
+            />
+          ) : (
+            <div></div>
+          )}
+
           <div>
             <input type="file" onChange={handleChooseFile} />
 
@@ -234,29 +247,6 @@ export const ModuleAddFood = (props: SS) => {
               {loading ? "Loading" : "Submit"}​​​​​{" "}
             </button>
           </div>
-          {/* <div
-            style={{
-              width: "100%",
-              height: "40px",
-              backgroundColor: "grey",
-              display: "flex",
-              alignItems: "center",
-              borderRadius: "10px",
-            }}
-          >
-            <input
-              type="file"
-              name="image"
-              onChange={handlechange}
-              placeholder="Food image"
-              style={{
-                border: "none",
-                outline: "none",
-                backgroundColor: "grey",
-                marginLeft: "30px",
-              }}
-            />
-          </div> */}
         </div>
       </div>
 
